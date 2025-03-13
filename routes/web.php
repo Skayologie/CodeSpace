@@ -36,3 +36,4 @@ Route::resource('/Categorie', CategorieController::class);
 Route::resource('/Tag', TagController::class);
 
 Route::resource('/Profile', ProfileController::class);
+
