@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SendResetLink;
 use App\Http\Controllers\TagController;
@@ -15,19 +18,15 @@ Route::get('/', function () {
     return view('Admin.index');
 })->name('admin.dashboard');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name("auth.login");
+/**
+ *Authentification
+ */
 
-Route::get('/register', function () {
-    return view('auth.register');
-})->name("auth.register");
+Route::resource('/register',RegisterController::class);
+Route::resource('/login',LoginController::class);
 
-Route::get('/forget_password', function () {
-    return view('auth.forgot-password');
-})->name("auth.forgotPassword");
+Route::get('/forget_password', [AuthController::class,"forgetpassword"])->name("auth.forgotPassword");
 
-Route::post('/password/reset',[SendResetLink::class,'sendResetLink'])->name('password.reset');
 
 Route::resource('/Post', PostController::class);
 

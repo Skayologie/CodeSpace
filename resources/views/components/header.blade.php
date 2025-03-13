@@ -2,7 +2,7 @@
     <!-- Logo Section -->
     <div class="flex items-center">
       <a href="{{route('admin.dashboard')}}" class="flex items-center mr-4">
-        
+
         <span class="text-[#FF4500] font-bold ml-1 text-xl">Code Space</span>
       </a>
     </div>
@@ -22,11 +22,11 @@
     <!-- Right Side Buttons -->
     <div class="flex items-center space-x-2">
       <!-- Login Button -->
-      <a href="{{route('auth.login')}}" class="bg-[#FF4500] text-white font-bold rounded-full px-4 py-1.5 text-sm hover:bg-[#e03d00]">
+      <a href="{{route('login.index')}}" class="bg-[#FF4500] text-white font-bold rounded-full px-4 py-1.5 text-sm hover:bg-[#e03d00]">
         Se connecter
       </a>
       <!-- Login Button -->
-      <a href="{{route('auth.register')}}" class="bg-[#ffffff] text-black font-bold rounded-full border  border-black px-4 py-1.5 text-sm hover:bg-[#e03d00] hover:text-white hover:border-white">
+      <a href="{{route('register.index')}}" class="bg-[#ffffff] text-black font-bold rounded-full border  border-black px-4 py-1.5 text-sm hover:bg-[#e03d00] hover:text-white hover:border-white">
         register
       </a>
       <!-- More Menu Button -->
