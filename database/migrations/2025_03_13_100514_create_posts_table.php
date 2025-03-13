@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer("reactions");
             $table->integer("down_votes");
             $table->integer("up_votes");
-            $table->string("status");
+            $table->enum("status",['published', 'draft', 'archived']);
             $table->timestamps();
             // Foreign key constraints
             $table->foreign("categoryID")->references("id")->on("categories");

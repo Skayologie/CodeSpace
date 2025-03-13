@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -24,11 +26,19 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'username' => fake()->unique()->userName(),
             'email' => fake()->unique()->safeEmail(),
-            'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => Hash::make('password'), // Default password: 'password'
+            'profilePicture' => 'DefaultAvatar.jpg',
+            'bio' => fake()->sentence(10),
+            'github' => fake()->optional()->url(),
+            'linkedin' => fake()->optional()->url(),
+            'twitter' => fake()->optional()->url(),
+            'activityScore' => fake()->numberBetween(0, 1000),
+            'email_verified_at' => fake()->optional()->dateTime(),
+            'last_login_at' => fake()->optional()->dateTime(),
             'remember_token' => Str::random(10),
+            'deleted_at' => null, // Soft delete (optional)
         ];
     }
 
