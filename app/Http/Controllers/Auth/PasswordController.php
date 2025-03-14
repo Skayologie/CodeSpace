@@ -34,8 +34,7 @@ class PasswordController
                             "remember_token"=>null
                         ]);
                         if ($updated){
-//                            $email = env("DEFAULT_RECEIVER") === null ? $result["email"] : env("DEFAULT_RECEIVER");
-                            $email = "jawadboulmal@gmail.com";
+                            $email = env("DEFAULT_RECEIVER") === null ? $result["email"] : env("DEFAULT_RECEIVER");
                             Mail::to($email)->send(new PasswordChangedNotification());
                             session()->remove("tokenChangePassword");
                             return redirect()->to(route("login.index"))->with("success","The Password has been updated successfully !");
@@ -65,7 +64,8 @@ class PasswordController
                 $result->update([
                     "remember_token"=>$tokenResetPassword
                 ]);
-                Mail::to("jawadboulmal@gmail.com")->send(new SendTokenResetPassword($tokenResetPassword));
+                $email = env("DEFAULT_RECEIVER") === null ? $result["email"] : env("DEFAULT_RECEIVER");
+                Mail::to($email)->send(new SendTokenResetPassword($tokenResetPassword));
 //                Mail::to($data["email"])->send(new SendTokenResetPassword($tokenResetPassword));
                 return redirect()->to(route("ResetPass.index"))->with('success',"We Send The Code Token To Your Email .");
             }else{
