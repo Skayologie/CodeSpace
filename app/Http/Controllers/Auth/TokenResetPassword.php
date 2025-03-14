@@ -8,7 +8,10 @@ use Illuminate\Http\Request;
 class TokenResetPassword
 {
     public function index(){
-        return view('auth.tokenVerification');
+        if (session()->has("tokenChangePassword")){
+            return view('auth.tokenVerification');
+        }
+        return redirect()->to(route("login.index"));
     }
     public function CheckTokenCompatibility(Request $request){
         $data = $request->validate([

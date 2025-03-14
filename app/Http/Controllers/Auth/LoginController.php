@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,8 +12,8 @@ class LoginController
         return view('auth.login');
     }
 
-    public function store(Request $request){
-        $data = $request->input();
+    public function store(LoginRequest $request){
+        $data = $request->validated();
         try{
             $result = User::where("email","=",$data['email'])->first();
             if ($result){
