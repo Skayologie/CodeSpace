@@ -19,5 +19,6 @@ class User extends Model
         "github",
         "linkedin",
         "twitter",
+        "remember_token"
     ];
 }
