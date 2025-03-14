@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Mail\SendTokenResetPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PasswordController
 {
@@ -58,7 +60,7 @@ class PasswordController
                 $result->update([
                     "remember_token"=>$tokenResetPassword
                 ]);
-
+                Mail::to($data["email"])->send(new SendTokenResetPassword($tokenResetPassword));
                 return redirect()->to(route("ResetPass.index"))->with('success',"We Send The Code Token To Your Email .");
             }else{
                 return redirect()->to(route("forget_password.index"))->with('error',"This email is not exist");
