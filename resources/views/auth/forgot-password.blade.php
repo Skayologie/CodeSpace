@@ -10,33 +10,42 @@
           <line x1="9" y1="9" x2="15" y2="15" />
         </svg>
       </button>
-      
+
       <!-- Title -->
       <h1 class="text-2xl font-semibold text-center mb-2">Forget your password ?</h1>
-      
 
 
-      
+
+        @if (session('error'))
+            <div class=" top-[80px] right-[80px] p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
+        @if (session('success'))
+            <div class=" top-[80px] right-[80px] p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
       <!-- Divider -->
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-300"></div>
         <div class="flex-grow border-t border-gray-300"></div>
       </div>
-      
+
       <!-- Login form -->
-      <form method="POST" action="{{route('password.reset')}}">
+      <form method="POST" action="{{route('forget_password.store')}}">
         @csrf
         <div class="space-y-4">
           <div>
-            <input id="email" type="email" placeholder="Adresse email *" required
+            <input value="{{old('email')}}" id="email" name="email" type="email" placeholder="Adresse email *"
               class="w-full px-4 py-3 rounded-md bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
           </div>
         </div>
         <!-- New to site -->
         <div class="mt-6 text-sm">
-          Première fois sur Reddit ? <a href="#" class="text-blue-600 hover:underline" onclick="toggleForms()">Inscris-toi</a>
+          Première fois sur CodeSpace ? <a href="#" class="text-blue-600 hover:underline" onclick="toggleForms()">Inscris-toi</a>
         </div>
-        
+
         <!-- Submit button -->
         <button type="submit" id="sendBtn" class="w-full mt-6 py-3 px-4 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-700">
           Send Token

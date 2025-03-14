@@ -6,6 +6,7 @@
           {{ session('success') }}
       </div>
   @endif
+
     <div id="loginForm" class="bg-white rounded-lg shadow-md p-8 w-full max-w-md relative">
       <!-- Close button -->
       <button class="absolute top-4 right-4 text-blue-500 hover:bg-gray-100 p-1 rounded-full">
@@ -24,7 +25,11 @@
         En continuant, tu acceptes notre <a href="#" class="text-blue-600 hover:underline">Contrat d'utilisation</a> et
         reconnais que tu comprends notre <a href="#" class="text-blue-600 hover:underline">Politique de confidentialité</a>.
       </p>
-
+        @if (session('error'))
+            <div class=" top-[80px] right-[80px] p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                {{ session('error') }}
+            </div>
+        @endif
 
       <!-- Social login buttons -->
       <div class="space-y-3 mb-4">
@@ -50,7 +55,7 @@
           @csrf
         <div class="space-y-4">
           <div>
-            <input name="email" type="text" placeholder="Adresse email ou pseudo *" required
+            <input name="email" type="email" placeholder="Adresse email ou pseudo *" required
               class="w-full px-4 py-3 rounded-md bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
           </div>
           <div>
@@ -61,7 +66,7 @@
 
         <!-- Forgot password link -->
         <div class="text-blue-600 hover:underline text-sm mt-4">
-          <a href="{{route('auth.forgotPassword')}}">Mot de passe oublié ?</a>
+          <a href="{{route('forget_password.index')}}">Mot de passe oublié ?</a>
         </div>
 
         <!-- New to site -->

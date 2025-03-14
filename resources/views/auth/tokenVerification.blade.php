@@ -26,6 +26,11 @@
                 {{ session('success') }}
             </div>
         @endif
+        @if($errors->any())
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                {{ implode('', $errors->all(':message')) }}
+            </div>
+        @endif
       <!-- Divider -->
       <div class="flex items-center my-6">
         <div class="flex-grow border-t border-gray-300"></div>
@@ -33,22 +38,19 @@
       </div>
 
       <!-- Login form -->
-      <form method="POST" action="{{route('forget_password.store')}}">
+      <form method="POST" action="{{route('ResetPass.CheckTokenCompatibility')}}">
         @csrf
         <div class="space-y-4">
           <div>
-            <input value="{{old('email')}}" id="email" name="email" type="email" placeholder="Adresse email *"
+            <input value="{{old('tokenVerification')}}" id="token" name="tokenVerification" type="text" placeholder="********"
               class="w-full px-4 py-3 rounded-md bg-gray-100 border-transparent focus:border-blue-500 focus:bg-white focus:ring-0">
           </div>
         </div>
-        <!-- New to site -->
-        <div class="mt-6 text-sm">
-          Première fois sur Reddit ? <a href="#" class="text-blue-600 hover:underline" onclick="toggleForms()">Inscris-toi</a>
-        </div>
+
 
         <!-- Submit button -->
         <button type="submit" id="sendBtn" class="w-full mt-6 py-3 px-4 bg-gray-200 hover:bg-gray-300 rounded-full text-gray-700">
-          Send Token
+          Check Token
         </button>
       </form>
     </div>
