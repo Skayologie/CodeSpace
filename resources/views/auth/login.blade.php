@@ -30,7 +30,12 @@
                 {{ session('error') }}
             </div>
         @endif
+        @if($errors->any())
+            <div class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+                {{ implode('', $errors->all(':message')) }}
+            </div>
 
+        @endif
       <!-- Social login buttons -->
       <div class="space-y-3 mb-4">
         <button class="flex items-center justify-center w-full py-2 px-4 border border-gray-300 rounded-full hover:bg-gray-50">
@@ -71,7 +76,7 @@
 
         <!-- New to site -->
         <div class="mt-6 text-sm">
-          Première fois sur Reddit ? <a href="#" class="text-blue-600 hover:underline" onclick="toggleForms()">Inscris-toi</a>
+          Première fois sur Reddit ? <a href="{{route('register.index')}}" class="text-blue-600 hover:underline" >Inscris-toi</a>
         </div>
 
         <!-- Submit button -->

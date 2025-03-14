@@ -2,13 +2,7 @@
     <x-header></x-header>
     <div class="bg-gray-100 flex justify-center items-center min-h-screen">
         <div class="bg-white rounded-lg shadow-md w-full max-w-md p-8">
-            <div class="flex items-center mb-6">
-                <button class="text-gray-500 hover:text-gray-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                    </svg>
-                </button>
-            </div>
+
 
             <h1 class="text-2xl font-bold text-center text-gray-800 mb-8">Réinitialiser le mot de passe</h1>
             @if (session('error'))

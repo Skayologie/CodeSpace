@@ -66,7 +66,7 @@
 
             <!-- Already have account -->
             <div class="mt-6 text-sm">
-                Déjà inscrit ? <a href="#" class="text-blue-600 hover:underline" onclick="toggleForms()">Connecte-toi</a>
+                Déjà inscrit ? <a href="{{route('login.index')}}" class="text-blue-600 hover:underline" >Connecte-toi</a>
             </div>
 
             <!-- Submit button -->
