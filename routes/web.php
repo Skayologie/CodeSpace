@@ -15,15 +15,14 @@ use App\Http\Controllers\CategorieController;
 Route::get('/token',function(){
     return array("csrf"=>csrf_token());
 });
-
+//
 Route::get('/', function () {
-    return view('Admin.index');
-})->name('admin.dashboard');
+    return view('Homepage.dashboard');
+})->name('dashboard');
 
 /**
  *Authentification
  */
-
 Route::resource('/register',RegisterController::class);
 Route::resource('/login',LoginController::class);
 Route::resource('/forget_password', PasswordController::class);
@@ -36,11 +35,20 @@ Route::get('/CheckToken', [TokenResetPassword::class,"index"])->name("ResetPass.
 Route::post('/CheckToken/CheckTokenCompatibility', [TokenResetPassword::class,"CheckTokenCompatibility"])->name("ResetPass.CheckTokenCompatibility");
 
 
-Route::resource('/Post', PostController::class);
+Route::group(["middleware"=>"auth"],function(){
+    Route::get('/Dashboard', function () {
+        return view('Admin.index');
+    })->name('admin.dashboard');
 
-Route::resource('/Categorie', CategorieController::class);
 
-Route::resource('/Tag', TagController::class);
+    Route::resource('/Post', PostController::class);
 
-Route::resource('/Profile', ProfileController::class);
+    Route::resource('/Categorie', CategorieController::class);
+
+    Route::resource('/Tag', TagController::class);
+
+    Route::resource('/Profile', ProfileController::class);
+});
+
+
 
