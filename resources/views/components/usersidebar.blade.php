@@ -1,167 +1,120 @@
- <!-- ! Sidebar -->
- <aside class="sidebar !bg-[#FF4500]">
-    <div class="sidebar-start">
-        <div class="sidebar-head">
-            <a href="/" class="logo-wrapper" title="Home">
-                <span class="sr-only">Home</span>
-                <div class="logo-text">
-                    <span class="logo-title">Code Space</span>
-                    <span class="logo-subtitle">Dashboard</span>
-                </div>
-
-            </a>
-            <button class="sidebar-toggle transparent-btn " title="Menu" type="button">
-                <span class="sr-only">Toggle menu</span>
-                <span class="icon menu-toggle" aria-hidden="true"></span>
-            </button>
-        </div>
-        <div class="sidebar-body">
-            <ul class="sidebar-body-menu">
-                <li>
-                    <a class="active" href="/"><span class="icon home" aria-hidden="true"></span>Dashboard</a>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon document" aria-hidden="true"></span>Posts
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="{{route('Post.index')}}">All Posts</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon folder" aria-hidden="true"></span>Categories
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">All categories</a>
-                        </li>
-                        <li>
-                            <a href="{{route('Categorie.index')}}">Add Categorie</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon folder" aria-hidden="true"></span>Tags
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">All tags</a>
-                        </li>
-                        <li>
-                            <a href="{{route('Tag.index')}}">Add tag</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                    <span class="icon user-3" aria-hidden="true"></span>Communities
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">All Communities</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon user-3" aria-hidden="true"></span>Users
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="users-01.html">Users-01</a>
-                        </li>
-                        <li>
-                            <a href="users-02.html">Users-02</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon paper" aria-hidden="true"></span>Pages
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="pages.html">All pages</a>
-                        </li>
-                        <li>
-                            <a href="new-page.html">Add new page</a>
-                        </li>
-                    </ul>
-                </li> -->
-                <!-- <li>
-                    <a href="comments.html">
-                        <span class="icon message" aria-hidden="true"></span>
-                        Comments
-                    </a>
-                    <span class="msg-counter">7</span>
-                </li> -->
-            </ul>
-            <!-- <span class="system-menu__title">system</span>
-            <ul class="sidebar-body-menu">
-                <li>
-                    <a href="appearance.html"><span class="icon edit" aria-hidden="true"></span>Appearance</a>
-                </li>
-                <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon category" aria-hidden="true"></span>Extentions
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
-                    </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="extention-01.html">Extentions-01</a>
-                        </li>
-                        <li>
-                            <a href="extention-02.html">Extentions-02</a>
-                        </li>
-                    </ul>
-                </li>
-                
-                <li>
-                    <a href="##"><span class="icon setting" aria-hidden="true"></span>Settings</a>
-                </li>
-            </ul> -->
-        </div>
-    </div>
-    <div class="sidebar-footer">
-        <a href="##" class="sidebar-user">
-            <span class="sidebar-user-img">
-                <picture><source srcset="{{asset('storage/img/avatar/ceo.jpeg')}}" type="image/webp"><img src="{{asset('storage/img/avatar/ceojpeg.jpeg')}}" alt="User name"></picture>
-            </span>
-            <div class="sidebar-user-info">
-                <span class="sidebar-user__title">Jawad Boulmal</span>
-                <span class="sidebar-user__subtitle">CEO CodeSpace</span>
-            </div>
+<!-- Sidebar -->
+<div class="fixed pb-[100px] w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
+    <!-- Navigation Section -->
+    <nav class="px-3 py-2">
+        <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md bg-gray-100 text-black">
+            <i class="fas fa-home mr-3 w-5 text-center"></i>
+            <span>Accueil</span>
         </a>
+        <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-fire mr-3 w-5 text-center"></i>
+            <span>Populaires</span>
+        </a>
+        <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-compass mr-3 w-5 text-center"></i>
+            <span>Explorer</span>
+        </a>
+        <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+            <i class="fas fa-list mr-3 w-5 text-center"></i>
+            <span>Tous</span>
+        </a>
+    </nav>
+
+
+    @if($auth === "true")
+        <!-- Divider -->
+        <div class="border-t border-gray-200 my-2"></div>
+
+        <!-- Flux Personnalisés Section -->
+        <div class="px-3 py-2">
+            <div class="flex justify-between items-center px-3 py-1 text-xs font-semibold text-gray-500 cursor-pointer section-header" data-section="flux">
+                <span>FLUX PERSONNALISÉS</span>
+                <i class="fas fa-chevron-up section-icon"></i>
+            </div>
+            <div class="section-content" id="flux-content">
+                <a href="#" class="flex items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-plus mr-3 w-5 text-center"></i>
+                    <span>Créer un flux personnalisé</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="border-t border-gray-200 my-2"></div>
+
+        <!-- Communautés Section -->
+        <div class="px-3 py-2">
+            <div class="flex justify-between items-center px-3 py-1 text-xs font-semibold text-gray-500 cursor-pointer section-header" data-section="communities">
+                <span>COMMUNAUTÉS</span>
+                <i class="fas fa-chevron-up section-icon"></i>
+            </div>
+            <div class="section-content" id="communities-content">
+                <a href="#" class="flex items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                    <i class="fas fa-plus mr-3 w-5 text-center"></i>
+                    <span>Créer une communauté</span>
+                </a>
+
+                <!-- Community Links -->
+                <div class="mt-1">
+                    <a href="#" class="flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mr-3">
+                                <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" class="w-4 h-4" alt="Canada">
+                            </div>
+                            <span>r/canada</span>
+                        </div>
+                        <i class="far fa-star favorite-icon"></i>
+                    </a>
+                    <a href="#" class="flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                        <div class="flex items-center">
+                            <div class="w-5 h-5 rounded-full bg-green-800 flex items-center justify-center mr-3">
+                                <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" class="w-4 h-4" alt="Morocco">
+                            </div>
+                            <span>r/Morocco</span>
+                        </div>
+                        <i class="far fa-star favorite-icon"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    @endif
+
+
+    <!-- Divider -->
+    <div class="border-t border-gray-200 my-2"></div>
+
+    <!-- Resources Section -->
+    <div class="px-3 py-2">
+        <div class="flex justify-between items-center px-3 py-1 text-xs font-semibold text-gray-500 cursor-pointer section-header" data-section="resources">
+            <span>RESSOURCES</span>
+            <i class="fas fa-chevron-up section-icon"></i>
+        </div>
+        <div class="section-content" id="resources-content">
+            <a href="#" class="flex items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-info-circle mr-3 w-5 text-center"></i>
+                <span>À propos de CodeSpace</span>
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-ad mr-3 w-5 text-center"></i>
+                <span>Publicités</span>
+            </a>
+
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-question-circle mr-3 w-5 text-center"></i>
+                <span>Aide</span>
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-book mr-3 w-5 text-center"></i>
+                <span>Blog</span>
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-briefcase mr-3 w-5 text-center"></i>
+                <span>Carrières</span>
+            </a>
+            <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <i class="fas fa-newspaper mr-3 w-5 text-center"></i>
+                <span>Presse</span>
+            </a>
+        </div>
     </div>
-</aside>
+</div>
