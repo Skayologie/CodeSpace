@@ -15,6 +15,9 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->validateCsrfTokens(except: [
             '/password/reset' // <-- exclude this route
         ]);
+        $middleware->alias([
+            "auth"=>\App\Http\Middleware\AuthMiddleWare::class,
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
