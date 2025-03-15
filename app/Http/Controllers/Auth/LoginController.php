@@ -21,6 +21,9 @@ class LoginController
                 $password = $data["password"];
                 $verifyPassword = password_verify($password,$Hashedpassword);
                 if ($verifyPassword){
+                    $user = $result;
+                    session()->put("user",$user);
+
                     dd("You are a good user ");
                 }else{
                     return redirect()->to(route("login.index"))->with('error',"Incorrect Password , Do you want to change password ?? ");
