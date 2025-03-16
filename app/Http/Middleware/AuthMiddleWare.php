@@ -16,10 +16,11 @@ class AuthMiddleWare
     public function handle(Request $request, Closure $next): Response
     {
         $user = session()->get("user");
-        if ($user === null){
-            abort("401");
+        if ($user != null){
+            return $next($request);
         }
+        return redirect()->route('login.index');
 
-        return $next($request);
+
     }
 }
