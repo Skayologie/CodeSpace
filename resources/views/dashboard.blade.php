@@ -1,4 +1,4 @@
 <x-guest-layout>
-    <x-header></x-header>
+    <x-header auth="true"></x-header>
 
 </x-guest-layout>
