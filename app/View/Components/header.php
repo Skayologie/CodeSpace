@@ -8,12 +8,20 @@ use Illuminate\View\Component;
 
 class header extends Component
 {
+    public $auth;
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
         //
+        $user = session()->get("user");
+        if ($user != null){
+            $this->auth = "true";
+        }else{
+            $this->auth = "false";
+        }
     }
 
     /**
