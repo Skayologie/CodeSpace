@@ -21,4 +21,8 @@ class User extends Model
         "twitter",
         "remember_token"
     ];
+
+    public function roles(){
+        return $this->belongsToMany(Role::class,"user_has_role");
+    }
 }
