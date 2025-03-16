@@ -1,5 +1,5 @@
 <x-guest-layout>
-  <x-header></x-header>
+  <x-header auth="false"></x-header>
   <div class="bg-gray-100 flex justify-center items-center min-h-screen">
   @if (session('success'))
       <div class="absolute top-[80px] right-[80px] p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">

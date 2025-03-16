@@ -1,4 +1,4 @@
-<x-UserHompage auth="true">
+<x-UserHompage auth="false">
     <div class="bg-white rounded-md border border-gray-300 shadow-sm max-w-2xl mx-auto">
         <!-- Post Header -->
         <div class="p-2 flex items-center justify-between">
