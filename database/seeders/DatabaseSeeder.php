@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Categorie;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Role;
 use App\Models\Tag;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,5 +22,7 @@ class DatabaseSeeder extends Seeder
         Tag::factory()->count(50)->create();
         Category::factory()->count(20)->create();
         Post::factory()->count(10)->create();
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
     }
 }

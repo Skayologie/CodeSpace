@@ -10,6 +10,8 @@
   <link rel="shortcut icon" href="./img/svg/logo.svg" type="image/x-icon">
   <!-- Custom styles -->
   <link rel="stylesheet" href="{{ asset('storage/css/style.min.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
   @vite(['resources/css/app.css'])
 
 </head>
@@ -36,7 +38,7 @@
       <div class="container">
 
           {{ $slot }}
-        
+
       </div>
     </main>
     <!-- ! Footer -->
