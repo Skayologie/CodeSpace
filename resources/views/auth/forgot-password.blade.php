@@ -43,7 +43,7 @@
         </div>
         <!-- New to site -->
         <div class="mt-6 text-sm">
-          Première fois sur CodeSpace ? <a href="#" class="text-blue-600 hover:underline" onclick="toggleForms()">Inscris-toi</a>
+          Première fois sur CodeSpace ? <a href="{{route('register.index')}}" class="text-blue-600 hover:underline" >Inscris-toi</a>
         </div>
 
         <!-- Submit button -->
