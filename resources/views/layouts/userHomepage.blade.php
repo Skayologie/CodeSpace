@@ -1,4 +1,3 @@
-@props(["auth"])
 <x-guest-layout>
     <x-header auth="{{$auth}}"></x-header>
     <x-usersidebar auth="{{$auth}}"></x-usersidebar>
