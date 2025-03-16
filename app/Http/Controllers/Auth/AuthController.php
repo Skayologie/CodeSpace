@@ -13,4 +13,9 @@ class AuthController
     public function forgetpassword(){
         return view('auth.forgot-password');
     }
+
+    public function logout(){
+        session()->remove("user");
+        return redirect()->to("login.index");
+    }
 }

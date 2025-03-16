@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <x-header></x-header>
+    <x-header auth="false"></x-header>
     <!-- Registration Form Card -->
   <div class="bg-gray-100 flex justify-center items-center min-h-screen">
 

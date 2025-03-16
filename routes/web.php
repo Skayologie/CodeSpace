@@ -15,32 +15,46 @@ use App\Http\Controllers\CategorieController;
 Route::get('/token',function(){
     return array("csrf"=>csrf_token());
 });
-
+//
 Route::get('/', function () {
-    return view('Admin.index');
-})->name('admin.dashboard');
-
-/**
- *Authentification
- */
-
-Route::resource('/register',RegisterController::class);
-Route::resource('/login',LoginController::class);
-Route::resource('/forget_password', PasswordController::class);
-Route::get('/forgetPassword/CheckToken', [PasswordController::class, "CheckToken"])->name("Password.checkToken");
-
-Route::get('/forgetPassword/updatePassword', [PasswordController::class,"updateThePassword"])->name('Password.updateThePassword');
-Route::post('/forgetPassword/updatePassword', [PasswordController::class,"changingThePassword"])->name('Password.changingThePassword');
-
-Route::get('/CheckToken', [TokenResetPassword::class,"index"])->name("ResetPass.index");
-Route::post('/CheckToken/CheckTokenCompatibility', [TokenResetPassword::class,"CheckTokenCompatibility"])->name("ResetPass.CheckTokenCompatibility");
+    return view('Homepage.dashboard');
+})->name('dashboard');
 
 
-Route::resource('/Post', PostController::class);
 
-Route::resource('/Categorie', CategorieController::class);
+Route::group(["middleware"=>"notAuth"],function(){
+    /**
+     *Authentification
+     */
+    Route::resource('/register',RegisterController::class);
+    Route::resource('/login',LoginController::class);
+    Route::resource('/forget_password', PasswordController::class);
+    Route::get('/forgetPassword/CheckToken', [PasswordController::class, "CheckToken"])->name("Password.checkToken");
 
-Route::resource('/Tag', TagController::class);
+    Route::get('/forgetPassword/updatePassword', [PasswordController::class,"updateThePassword"])->name('Password.updateThePassword');
+    Route::post('/forgetPassword/updatePassword', [PasswordController::class,"changingThePassword"])->name('Password.changingThePassword');
 
-Route::resource('/Profile', ProfileController::class);
+    Route::get('/CheckToken', [TokenResetPassword::class,"index"])->name("ResetPass.index");
+    Route::post('/CheckToken/CheckTokenCompatibility', [TokenResetPassword::class,"CheckTokenCompatibility"])->name("ResetPass.CheckTokenCompatibility");
+
+});
+
+
+Route::group(["middleware"=>"auth"],function(){
+    Route::get('/Dashboard', function () {
+        return view('Admin.index');
+    })->name('admin.dashboard');
+
+    Route::get("/logout",[AuthController::class,"logout"])->name("auth.logout");
+
+    Route::resource('/Post', PostController::class);
+
+    Route::resource('/Categorie', CategorieController::class);
+
+    Route::resource('/Tag', TagController::class);
+
+    Route::resource('/Profile', ProfileController::class);
+});
+
+
 
