@@ -16,6 +16,6 @@ class AuthController
 
     public function logout(){
         session()->remove("user");
-        return redirect()->to("login.index");
+        return redirect()->to(route("login.index"));
     }
 }
