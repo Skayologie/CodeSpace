@@ -1,4 +1,3 @@
-
 <x-UserHompage auth="true">
     <div class="bg-white rounded-md border border-gray-300 shadow-sm max-w-2xl mx-auto">
         <!-- Post Header -->
