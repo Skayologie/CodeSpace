@@ -24,7 +24,7 @@ class LoginController
                     $user = $result;
                     session()->put("user",$user);
 
-                    dd("You are a good user ");
+                    return redirect()->to(route("dashboard"));
                 }else{
                     return redirect()->to(route("login.index"))->with('error',"Incorrect Password , Do you want to change password ?? ");
                 }
