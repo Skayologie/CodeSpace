@@ -22,11 +22,7 @@ class DatabaseSeeder extends Seeder
         Tag::factory()->count(50)->create();
         Category::factory()->count(20)->create();
         Post::factory()->count(10)->create();
-        Role::insert([
-            ["name"=>"admin"],
-            ["name"=>"user"],
-            ["name"=>"guest"],
-            ["name"=>"manager"]
-        ]);
+        $this->call(RoleSeeder::class);
+        $this->call(PermissionSeeder::class);
     }
 }
