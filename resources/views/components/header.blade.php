@@ -2,7 +2,7 @@
 <header class="bg-white h-16 px-4 flex items-center justify-between border-b border-gray-300 sticky top-0 z-50">
     <!-- Logo Section -->
     <div class="flex items-center">
-      <a href="{{route('dashboard')}}" class="flex items-center mr-4">
+      <a href="{{route('/')}}" class="flex items-center mr-4">
 
         <span class="text-[#FF4500] font-bold ml-1 text-xl">Code Space</span>
       </a>
