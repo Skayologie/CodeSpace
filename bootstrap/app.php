@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
         $middleware->alias([
             "auth"=>\App\Http\Middleware\AuthMiddleWare::class,
+            "notAuth"=>\App\Http\Middleware\NotAuth::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
