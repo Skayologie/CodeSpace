@@ -4,10 +4,17 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use App\Repository\Eloquent\LoginRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController
 {
+    protected $LoginRepository;
+
+    public function __construct(LoginRepository $LoginRepository){
+        $this->LoginRepository = $LoginRepository;
+    }
     public function index(){
         return view('auth.login');
     }
@@ -15,16 +22,12 @@ class LoginController
     public function store(LoginRequest $request){
         $data = $request->validated();
         try{
-            $result = User::where("email","=",$data['email'])->first();
-            if ($result){
-                $Hashedpassword = $result->password;
-                $password = $data["password"];
-                $verifyPassword = password_verify($password,$Hashedpassword);
+            $user = $this->LoginRepository->findByEmail($data["email"]);
+            if ($user){
+                $verifyPassword = $this->LoginRepository->verifyPassword($data["password"],$user);
                 if ($verifyPassword){
-                    $user = $result;
-                    $role = $user->roles[0]->name;
                     session()->put("user",$user);
-                    session()->put("role",$role);
+                    session()->put("role",$user->roles[0]->name);
                     return redirect()->to(route("dashboard"));
                 }else{
                     return redirect()->to(route("login.index"))->with('error',"Incorrect Password , Do you want to change password ?? ");
