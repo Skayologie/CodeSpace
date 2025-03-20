@@ -6,6 +6,7 @@ use App\Mail\PasswordChangedNotification;
 use App\Mail\SendTokenResetPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class PasswordController
@@ -28,7 +29,7 @@ class PasswordController
                     $password = $data["password"];
                     $result = User::where("remember_token","=",$token)->first();
                     if ($result != null){
-                        $hashedPassword = password_hash($password,PASSWORD_ARGON2ID);
+                        $hashedPassword = Hash::make($password);
                         $updated =$result->update([
                             "password"=>$hashedPassword,
                             "remember_token"=>null
