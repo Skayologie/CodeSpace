@@ -4,15 +4,14 @@ namespace App\Repository\Eloquent;
 
 use App\Models\User;
 use App\Repository\Contracts\LoginInterface;
+use App\Traits\Hashable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterRepository
 {
+    use Hashable;
 
-    public function hashPassword($password){
-        return Hash::make($password);
-    }
     public function create(array $data){
         return User::create($data);
     }
