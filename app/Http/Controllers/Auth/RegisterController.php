@@ -5,10 +5,17 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\RegisterUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Repository\Eloquent\RegisterRepository;
 use Illuminate\Support\Facades\DB;
 
 class RegisterController
 {
+    protected $RegisterRepository;
+    public function __construct(RegisterRepository $RegisterRepository)
+    {
+        $this->RegisterRepository = $RegisterRepository;
+    }
+
     public function index(){
         return view("auth.register");
     }
@@ -17,14 +24,11 @@ class RegisterController
         $data["bio"] = "Bio";
         try {
             $password = $data["password"];
-            $Hashedpassword = password_hash($password,PASSWORD_ARGON2ID);
+            $Hashedpassword = $this->RegisterRepository->hashPassword($password);
             $data["password"] = $Hashedpassword;
-            $register = User::create($data);
+            $register = $this->RegisterRepository->create($data);
             if ($register){
-                DB::table('user_has_role')->insert([
-                    'user_id' => $register->id,
-                    'role_id' => 2,
-                ]);
+                $this->RegisterRepository->assignRole($register->id,2);
             }
             return redirect()->to(route("login.index"))->with('success',"Account has created successfully .");
         }catch(\Exception $e){
