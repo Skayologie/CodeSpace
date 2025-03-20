@@ -5,18 +5,24 @@ namespace App\Http\Controllers\Auth;
 use App\Mail\PasswordChangedNotification;
 use App\Mail\SendTokenResetPassword;
 use App\Models\User;
+use App\Repository\Eloquent\PasswordRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class PasswordController
 {
+    protected $PasswordRepository;
+    public function __construct(PasswordRepository $PasswordRepository){
+        $this->PasswordRepository = $PasswordRepository;
+    }
+
     public function index(){
         return view('auth.forgot-password');
     }
 
     public function changingThePassword(Request $request){
-        $token = session()->get('tokenChangePassword');
+        $token = $this->PasswordRepository->check_session_for_token();
         $data = $request->validate([
             "password"=>"string|required|min:8",
             "passwordConfirm"=>"string|required|min:8"
@@ -27,13 +33,10 @@ class PasswordController
                     return back()->with('error','The Password doesnt match !');
                 }else{
                     $password = $data["password"];
-                    $result = User::where("remember_token","=",$token)->first();
+                    $result = $this->PasswordRepository->get_with_token($token);
                     if ($result != null){
-                        $hashedPassword = Hash::make($password);
-                        $updated =$result->update([
-                            "password"=>$hashedPassword,
-                            "remember_token"=>null
-                        ]);
+                        $hashedPassword = $this->PasswordRepository->hashPassword($password);
+                        $updated = $this->PasswordRepository->update_password($result,$hashedPassword);
                         if ($updated){
                             $email = env("DEFAULT_RECEIVER") === null ? $result["email"] : env("DEFAULT_RECEIVER");
                             Mail::to($email)->send(new PasswordChangedNotification());
@@ -60,14 +63,12 @@ class PasswordController
         ]);
         try {
             $tokenResetPassword = $this->randomPassword();
-            $result = User::where("email","=",$data["email"])->first();
+            $result = $this->PasswordRepository->get_by_email($data["email"]);
             if ($result){
-                $result->update([
-                    "remember_token"=>$tokenResetPassword
-                ]);
+                $this->PasswordRepository->update_token($result , $tokenResetPassword);
                 $email = env("DEFAULT_RECEIVER") === null ? $result["email"] : env("DEFAULT_RECEIVER");
                 Mail::to($email)->send(new SendTokenResetPassword($tokenResetPassword));
-//                Mail::to($data["email"])->send(new SendTokenResetPassword($tokenResetPassword));
+                session()->put("tokenChangePassword",$tokenResetPassword);
                 return redirect()->to(route("ResetPass.index"))->with('success',"We Send The Code Token To Your Email .");
             }else{
                 return redirect()->to(route("forget_password.index"))->with('error',"This email is not exist");
