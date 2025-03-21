@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text("multimedia")->nullable();
             $table->unsignedBigInteger("categoryID");
             $table->unsignedBigInteger("userId");
+            $table->enum("type",['text','image','lien']);
             $table->integer("views");
             $table->integer("reactions");
             $table->integer("down_votes");
