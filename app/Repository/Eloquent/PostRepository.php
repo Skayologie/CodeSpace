@@ -2,24 +2,30 @@
 
 namespace App\Repository\Eloquent;
 
-use App\Models\User;
-use App\Repository\Contracts\LoginInterface;
-use App\Traits\Hashable;
+use App\Models\Post;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
+use mysql_xdevapi\Exception;
 
-class RegisterRepository
+class PostRepository
 {
-    use Hashable;
-
-    public function create(array $data){
-        return User::create($data);
+    public function Store_tags(Post $post , $tags){
+        try {
+            foreach ($tags as $tag){
+                DB::table('post_tags')->insert([
+                    'post_id' => $post->id,
+                    'tag_id' => $tag,
+                ]);
+            }
+            return true;
+        }catch(\Exception $e){
+            return false;
+        }
     }
-
-    public function assignRole($user_id,$role_id){
-        DB::table('user_has_role')->insert([
-            'user_id' => $user_id,
-            'role_id' => $role_id,
-        ]);
+    public function StorePost($request){
+        try {
+            Post::create();
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 }
