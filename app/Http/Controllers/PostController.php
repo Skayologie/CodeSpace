@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Services\PostService;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+    private PostService $postService;
+    public function __construct(PostService $postService){
+        $this->postService = $postService;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         //
-        return view("Post.index");
+        $Categories = Category::all();
+        return view("Post.index",[
+            "Categories"=>$Categories
+        ]);
     }
 
     /**
@@ -31,6 +41,17 @@ class PostController extends Controller
     public function store(StorePostRequest $request)
     {
         //
+        try {
+            $data = $request->validated();
+            $result = $this->postService->StoreService($data);
+            if ($result){
+                return redirect()->to(route("/"))->with("success","Post has been created successfully .");
+            }else{
+                return redirect()->to(route("Post.index"))->with("error","Failed , The Post hasn't created , Try again .");
+            }
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
     }
 
     /**
