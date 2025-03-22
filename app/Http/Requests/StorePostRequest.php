@@ -11,7 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,21 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
+        $param = $_GET["Type"];
+        if ($param === "content-texte"){
+            return [
+                //
+                "title"=>"required|min:20|max:300",
+                "category"=>"required",
+                "content"=>"required|min:20|max:500",
+                "allTags"=>"required"
+            ];
+        }
+    }
+    public function messages()
+    {
         return [
-            //
+            "allTags"=>"The Tags Are required"
         ];
     }
 }
