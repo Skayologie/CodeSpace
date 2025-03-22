@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use Mockery\Exception;
 
 class TagController extends Controller
 {
@@ -15,7 +16,6 @@ class TagController extends Controller
     {
         //
         return view("Tag.index");
-
     }
 
     /**
@@ -64,5 +64,18 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         //
+    }
+
+    public function tag_search($text){
+        try {
+            $result = Tag::where('name', 'like', '%' . $text . '%')->get();
+            return response()->json([
+                "data"=>$result
+            ]);
+        }catch(\Exception $e ){
+            return response()->json([
+                "error"=>$e->getMessage()
+            ]);
+        }
     }
 }
