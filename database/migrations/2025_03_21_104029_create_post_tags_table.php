@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('post_tags', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger("post_id");
-            $table->unsignedBigInteger("user_id");
+            $table->unsignedBigInteger("tag_id");
             $table->foreign("post_id")->references("id")->on("posts");
-            $table->foreign("user_id")->references("id")->on("users");
+            $table->foreign("tag_id")->references("id")->on("tags");
             $table->timestamps();
         });
     }
