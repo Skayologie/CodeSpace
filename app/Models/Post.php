@@ -15,5 +15,10 @@ class Post extends Model
         "content",
         "multimedia",
         "categoryID",
+        "userId",
+        "views",
+        "reactions",
+        "down_votes",
+        "up_votes",
     ];
 }
