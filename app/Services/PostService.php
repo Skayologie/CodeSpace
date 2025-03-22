@@ -25,12 +25,23 @@ class PostService
         return $tags;
     }
 
-    public function Store_tags(Post $post ,$tags){
-        return $this->postRepository->Store_tags($post,$tags);
-    }
+    public function StoreService($data){
+        try {
+            $post = $this->postRepository->StorePost($data);
+            if ($post){
+                $tags = $this->Get_tags($data);
+                $addTags = $this->postRepository->Store_tags($post,$tags);
+                if ($addTags){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+        }catch(\Exception $e){
+            return $e->getMessage();
+        }
 
-    public function StoreService(Post $post , $data){
-        $tags = $this->Get_tags($data);
-        $this->Store_tags($post,$tags);
     }
 }
