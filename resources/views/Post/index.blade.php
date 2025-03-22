@@ -1,6 +1,16 @@
 <x-UserHompage>
 
-
+<style>
+    .ql-container {
+        border: none !important; /* Removes border */
+        box-shadow: none !important; /* Removes shadow if any */
+    }
+    .ql-toolbar {
+        border: none !important; /* Removes toolbar border */
+        box-shadow: none !important;
+        padding: 20px  !important;
+    }
+</style>
     <body class="w-100 bg-white text-gray-800 font-sans">
         <div class="flex justify-center">
             <div class="w-[600px]  ">
@@ -34,18 +44,31 @@
 
                     </div>
 
-                    <select name="category" id="categories" class="w-full px-4 py-3 text-base border border-gray-200 rounded-lg mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select name="category" id="categories" class="w-full px-4 py-3 text-base border border-gray-200 rounded-lg mb-5 focus:outline-none focus:ring-2 focus:ring-blue-500">
                         <option disabled selected>Choose a category</option>
                         @foreach($Categories as $Category)
                             <option value="{{$Category->id}}">{{$Category->name}}</option>
                         @endforeach
                     </select>
-                    <div class="relative text-right text-gray-500 text-sm flex justify-between  mb-8">
+                    <div id="content-lien" class="tab-content mb-6 hidden">
+                        <input style="border: 1px solid #b3b3b36b !important;"  type="text" class="w-full px-4 py-3 text-base border border-gray-200 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="URL du lien *">
+                    </div>
+                    <div class="relative text-right text-gray-500 text-sm flex justify-between  ">
                         @error("category")
                         <p class="text-red-800">*{{$message}}</p>
                         @enderror
                         <p id="categoryError"  class="hidden text-red-800">* Check category input</p>
 
+                    </div>
+                    <div id="content-images" class="tab-content mb-6 hidden">
+                        <div class="border border-dashed border-gray-300 rounded-lg p-12 flex flex-col items-center justify-center text-center">
+                            <p class="text-gray-600 mb-2">Glisse puis dépose ou charge des médias</p>
+                            <div class="flex items-center justify-center bg-gray-100 rounded-full p-2 w-8 h-8">
+                                <svg class="w-4 h-4 text-gray-600" viewBox="0 0 16 16" fill="none">
+                                    <path d="M8 12V4M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                     <div class="mb-2 relative">
                         <div id="tag-container" class="mb-2 flex flex-wrap gap-2"></div>
@@ -53,7 +76,7 @@
                         <input id="tag-input"
                                class="px-4 py-2 text-sm bg-gray-100  text-gray-500 rounded-full hover:bg-gray-200 focus:outline-none"
                                placeholder="Ajouter des étiquettes">
-                        <div class="relative text-right text-gray-500 text-sm flex justify-between  mb-8">
+                        <div class="relative text-right text-gray-500 text-sm flex justify-between  mb-4">
                             @error("allTags")
                             <p class="text-red-800">*{{$message}}</p>
                             @enderror
@@ -78,20 +101,9 @@
                     </div>
                     <input type="hidden" name="content" id="quill-content">
 
-                    <div id="content-images" class="tab-content mb-6 hidden">
-                        <div class="border border-dashed border-gray-300 rounded-lg p-12 flex flex-col items-center justify-center text-center">
-                            <p class="text-gray-600 mb-2">Glisse puis dépose ou charge des médias</p>
-                            <div class="flex items-center justify-center bg-gray-100 rounded-full p-2 w-8 h-8">
-                                <svg class="w-4 h-4 text-gray-600" viewBox="0 0 16 16" fill="none">
-                                    <path d="M8 12V4M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div id="content-lien" class="tab-content mb-6 hidden">
-                        <input type="text" class="w-full px-4 py-3 text-base border border-gray-200 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="URL du lien *">
-                    </div>
+
+
 
 
                     <div class="flex justify-end gap-2">
