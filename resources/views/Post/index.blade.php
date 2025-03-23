@@ -11,7 +11,7 @@
         padding: 20px  !important;
     }
 </style>
-    <body class="w-100 bg-white text-gray-800 font-sans">
+    <body class="w-100 bg-white text-gray-800">
         <div class="flex justify-center">
             <div class="w-[600px]  ">
                 <div class="flex justify-between items-center mb-6">
