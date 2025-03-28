@@ -146,7 +146,7 @@
                         </li>
                     </ul>
                 </li>
-                
+
                 <li>
                     <a href="##"><span class="icon setting" aria-hidden="true"></span>Settings</a>
                 </li>
