@@ -29,7 +29,7 @@
 <!-- Custom scripts -->
 <script src="{{asset('storage/js/app.js')}}"></script>
 <script src="{{asset('storage/js/script.js')}}"></script>
-<script src="{{asset('storage/js/Sidebar/dropdown.js')}}"></script>
+<script src="{{asset('storage/js/Community/CreateCommunity.js')}}"></script>
 
 </body>
 
