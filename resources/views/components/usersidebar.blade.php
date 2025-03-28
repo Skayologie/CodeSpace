@@ -16,7 +16,7 @@
 </style>
 @if($auth === "true")
 <!-- Modal Overlay -->
-<div id="modalOverlay" class="fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center  z-[120]">
+<div id="modalOverlay" class="fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center hidden z-[120]">
     <!-- Modal Container -->
     <div class="rounded-lg shadow-xl w-[700px] overflow-hidden bg-white ">
         <!-- Modal Header -->
@@ -286,3 +286,6 @@
         </div>
     </div>
 </div>
+@if($auth === "true")
+<script src="{{asset('storage/js/Community/CreateCommunity.js')}}"></script>
+@endif
