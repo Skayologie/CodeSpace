@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Http\Requests\StoreCategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
+use Illuminate\Support\Facades\File;
 
 class CategorieController extends Controller
 {
@@ -14,8 +15,9 @@ class CategorieController extends Controller
     public function index()
     {
         //
-        return view("Categorie.index");
-
+        return response()->json([
+            'content' => File::get(resource_path("views/forms/category.blade.php"))
+        ]);
     }
 
     /**
