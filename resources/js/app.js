@@ -1,21 +1,23 @@
-import './bootstrap';
 
-import Alpine from 'alpinejs';
+import Dropdown from "./Events/dropdown.js";
+import Community from "./Events/Community";
+import PostForm from "./Events/PostForm";
+import Header from "./Events/Header";
 
-window.Alpine = Alpine;
+import Dashboard from "./Dashboard/index";
 
-Alpine.start();
 
-document.getElementById("email").addEventListener("input",()=>{
-    if (document.getElementById("email").value.length != 0) {
-        document.getElementById("sendBtn").classList.remove("bg-gray-200");
-        document.getElementById("sendBtn").classList.remove("text-gray-700");
-        document.getElementById("sendBtn").classList.add("text-white");
-        document.getElementById("sendBtn").classList.add("bg-orange-600");
-    }else{
-        document.getElementById("sendBtn").classList.add("bg-gray-200");
-        document.getElementById("sendBtn").classList.remove("bg-orange-600");
-        document.getElementById("sendBtn").classList.add("text-gray-700");
-        document.getElementById("sendBtn").classList.remove("text-white");
-    }
-})
+const path = window.location.pathname;
+if (path !== "/Dashboard"){
+    document.addEventListener("DOMContentLoaded", () => {
+        new Dropdown();
+        new Community();
+        new Header();
+        new PostForm();
+    });
+}else{
+    document.addEventListener("DOMContentLoaded", () => {
+        new Dashboard();
+    })
+}
+
