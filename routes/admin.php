@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\ThemeController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth", "role:admin"])->group(function () {
@@ -11,4 +12,5 @@ Route::middleware(["auth", "role:admin"])->group(function () {
 
     Route::resource('/Categorie', CategorieController::class);
     Route::resource('/Tag', TagController::class);
+    Route::resource('/Theme', ThemeController::class);
 });
