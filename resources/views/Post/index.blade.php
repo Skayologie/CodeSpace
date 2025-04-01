@@ -18,7 +18,7 @@
                     <h1 class="text-2xl font-semibold text-gray-800">Créer une publication</h1>
                     <a href="#" class="text-gray-800 hover:underline">Brouillons</a>
                 </div>
-                <form method="post" action="{{route("Post.store")}}?Type={{$_GET["Type"]}}">
+                <form id="PostForm" method="post" action="{{route("Post.store")}}?Type={{$_GET["Type"]}}">
                     @csrf
                     <div id="communitySelector" class="inline-flex items-center bg-gray-100 rounded-full px-4 py-2 mb-6 cursor-pointer">
                         <div id="communityIcon" class="w-6 h-6 rounded-full mr-2 flex items-center justify-center">
@@ -117,8 +117,8 @@
     </body>
     <!-- Include the Quill library -->
     <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
-    <script src="{{asset('storage/js/validation.js')}}"></script>
-    <script src="{{asset('storage/js/Post/CreatePost.js')}}"></script>
+{{--    <script src="{{asset('storage/js/validation.js')}}"></script>--}}
+{{--    <script src="{{asset('storage/js/Post/CreatePost.js')}}"></script>--}}
 
 
 </x-UserHompage>

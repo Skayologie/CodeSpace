@@ -26,10 +26,9 @@
 <script src="{{asset('storage/plugins/chart.min.js')}}"></script>
 <!-- Icons library -->
 <script src="{{asset('storage/plugins/feather.min.js')}}"></script>
-<!-- Custom scripts -->
-<script src="{{asset('storage/js/app.js')}}"></script>
-<script src="{{asset('storage/js/script.js')}}"></script>
-<script src="{{asset('storage/js/Sidebar/dropdown.js')}}"></script>
+<!-- Main App Js Script -->
+<script src="{{ asset('js/app.js') }}"></script>
+
 </body>
 
 </html>

@@ -11,11 +11,11 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="name">Category Name*</label>
-                <input 
-                    type="text" 
-                    id="name" 
+                <input
+                    type="text"
+                    id="name"
                     style="border:1px black solid !important ;"
-                    name="name" 
+                    name="name"
                     maxlength="50"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="Enter category name"
@@ -25,9 +25,9 @@
 
             <div class="mb-4">
                 <label class="block text-gray-700 mb-2" for="description">Description</label>
-                <textarea 
-                    id="description" 
-                    name="description" 
+                <textarea
+                    id="description"
+                    name="description"
                     maxlength="500"
                     rows="4"
                     style="border:1px black solid !important ;"
@@ -37,13 +37,13 @@
                 <div class="text-right text-gray-500 text-sm mt-1">500</div>
             </div>
 
-            
+
             <div class="flex justify-between mt-6">
-                
+
                 <div class="space-x-2">
-                    
-                    <button 
-                        type="submit" 
+
+                    <button
+                        type="submit"
                         class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
                     >
                         Create

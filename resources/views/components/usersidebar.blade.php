@@ -109,7 +109,7 @@
                         <!-- Community Preview Card -->
                         <div class="bg-white rounded-lg overflow-hidden shadow-sm">
                             <!-- Banner Preview -->
-                            <div id="bannerPreview" class="bg-gray-200 h-24 w-full"></div>
+                            <div id="bannerPreview" class="bg-gray-200 h-24 w-full">dd</div>
 
                             <!-- Content with Icon -->
                             <div class="p-3 relative">
@@ -286,6 +286,6 @@
         </div>
     </div>
 </div>
-@if($auth === "true")
-<script src="{{asset('storage/js/Community/CreateCommunity.js')}}"></script>
-@endif
+{{--@if($auth === "true")--}}
+{{--<script src="{{asset('storage/js/Community/CreateCommunity.js')}}"></script>--}}
+{{--@endif--}}

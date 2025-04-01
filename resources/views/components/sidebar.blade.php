@@ -44,10 +44,10 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="categories.html">All categories</a>
+                            <a href="categories.html">Manage categories</a>
                         </li>
-                        <li>
-                            <a href="{{route('Categorie.index')}}">Add Categorie</a>
+                        <li id="category">
+                            <a href="#Category">Add Categorie</a>
                         </li>
                     </ul>
                 </li>
@@ -61,10 +61,27 @@
                     </a>
                     <ul class="cat-sub-menu">
                         <li>
-                            <a href="categories.html">All tags</a>
+                            <a href="categories.html">Manage tags</a>
+                        </li>
+                        <li  id="tag" >
+                            <a href="#Tag">Add tag</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="show-cat-btn" href="##">
+                        <span class="icon folder" aria-hidden="true"></span>Themes
+                        <span class="category__btn transparent-btn" title="Open list">
+                            <span class="sr-only">Open list</span>
+                            <span class="icon arrow-down" aria-hidden="true"></span>
+                        </span>
+                    </a>
+                    <ul class="cat-sub-menu">
+                        <li>
+                            <a href="categories.html">Manage Themes</a>
                         </li>
                         <li>
-                            <a href="{{route('Tag.index')}}">Add tag</a>
+                            <a id="category">Add Theme</a>
                         </li>
                     </ul>
                 </li>
@@ -99,6 +116,8 @@
                         </li>
                     </ul>
                 </li>
+
+
                 <!-- <li>
                     <a class="show-cat-btn" href="##">
                         <span class="icon paper" aria-hidden="true"></span>Pages

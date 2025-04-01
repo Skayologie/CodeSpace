@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use Illuminate\Support\Facades\File;
 use Mockery\Exception;
 
 class TagController extends Controller
@@ -15,7 +16,9 @@ class TagController extends Controller
     public function index()
     {
         //
-        return view("Tag.index");
+        return response()->json([
+            'content' => File::get(resource_path("views/forms/tag.blade.php"))
+        ]);
     }
 
     /**
