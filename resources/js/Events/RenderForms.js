@@ -1,51 +1,25 @@
 export default class RenderForms {
-    constructor() {
-        this.init();
-    }
-    init(){
-        document.getElementById('category').addEventListener('click',()=> {
-            this.renderCategoryForm()
+
+    render(endpoint , ActionIdBtn ) {
+
+        let btn = document.getElementById(ActionIdBtn);
+        let loading = document.getElementById("LoadingOne");
+        btn.addEventListener("click", () => {
+            loading.classList.remove('hidden');
+            $.ajax({
+                url: endpoint,
+                success: function (result) {
+                    loading.classList.add('hidden');
+                    document.getElementById("ContainForm").innerHTML = result.content;
+                    document.getElementById("closeButton").addEventListener('click', () => {
+                        document.getElementById("ContainForm").innerHTML = ""
+                    })
+                    document.getElementById("cancelButton").addEventListener('click', () => {
+                        document.getElementById("ContainForm").innerHTML = ""
+                    })
+                }
+            });
         })
-        document.getElementById('tag').addEventListener('click',()=> {
-            this.renderTagForm()
-        })
-    }
-    renderCommunityForm(){
-
-    }
-
-    renderCategoryForm(){
-        fetch('/Categorie')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("ContainForm").innerHTML = data.content;
-                document.getElementById("closeButton").addEventListener('click',()=>{
-                    document.getElementById("ContainForm").innerHTML = ""
-                })
-                document.getElementById("cancelButton").addEventListener('click',()=>{
-                    document.getElementById("ContainForm").innerHTML = ""
-                })
-                this.SideBarFormEvents()
-
-            })
-            .catch(error => console.error('Error fetching Blade file:', error));
-    }
-
-    renderTagForm(){
-        fetch('/Tag')
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("ContainForm").innerHTML = data.content;
-                document.getElementById("closeButton").addEventListener('click',()=>{
-                    document.getElementById("ContainForm").innerHTML = ""
-                })
-                document.getElementById("cancelButton").addEventListener('click',()=>{
-                    document.getElementById("ContainForm").innerHTML = ""
-                })
-                this.SideBarFormEvents()
-
-            })
-            .catch(error => console.error('Error fetching Blade file:', error));
     }
 
     SideBarFormEvents(){
@@ -98,34 +72,6 @@ export default class RenderForms {
                 }
             });
 
-            // // Private toggle functionality
-            // privateToggle.addEventListener('change', function() {
-            //     if (this.checked) {
-            //         // Disable profile display when private is enabled
-            //         profileDisplayOption.classList.add('opacity-50');
-            //         profileDisplayCheck.classList.remove('bg-blue-600');
-            //         profileDisplayCheck.classList.add('bg-gray-300');
-            //     } else {
-            //         // Enable profile display when private is disabled
-            //         profileDisplayOption.classList.remove('opacity-50');
-            //         profileDisplayCheck.classList.add('bg-blue-600');
-            //         profileDisplayCheck.classList.remove('bg-gray-300');
-            //     }
-            // });
-            //
-            // // Profile display toggle
-            // profileDisplayCheck.addEventListener('click', function() {
-            //     // Only allow toggling if private mode is not enabled
-            //     if (!privateToggle.checked) {
-            //         if (this.classList.contains('bg-blue-600')) {
-            //             this.classList.remove('bg-blue-600');
-            //             this.classList.add('bg-gray-300');
-            //         } else {
-            //             this.classList.add('bg-blue-600');
-            //             this.classList.remove('bg-gray-300');
-            //         }
-            //     }
-            // });
 
             // Close button functionality
             closeButton.addEventListener('click', function() {
