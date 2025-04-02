@@ -14,7 +14,10 @@ class ThemeController extends Controller
     public function index()
     {
         //
-        return view("themes.index");
+        $themes = Theme::whereNull('parent')->with('subthemes')->get();
+        return view("Admin.Pages.themes",[
+            "themes"=>$themes,
+        ]);
     }
 
     /**

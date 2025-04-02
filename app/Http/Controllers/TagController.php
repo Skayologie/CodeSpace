@@ -16,8 +16,9 @@ class TagController extends Controller
     public function index()
     {
         //
-        return response()->json([
-            'content' => File::get(resource_path("views/forms/tag.blade.php"))
+        $tags = Tag::all();
+        return view("Admin.Pages.tags",[
+            'tags'=>$tags
         ]);
     }
 
@@ -27,6 +28,9 @@ class TagController extends Controller
     public function create()
     {
         //
+        return response()->json([
+            'content' => File::get(resource_path("views/forms/tag.blade.php"))
+        ]);
     }
 
     /**
