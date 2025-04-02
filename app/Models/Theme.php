@@ -14,4 +14,14 @@ class Theme extends Model
         "name",
         "parent",
     ];
+
+    public function subthemes()
+    {
+        return $this->hasMany(Theme::class, 'parent');
+    }
+
+    public function parentTheme()
+    {
+        return $this->belongsTo(Theme::class, 'parent');
+    }
 }
