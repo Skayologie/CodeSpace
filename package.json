@@ -26,6 +26,7 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
+        "jquery": "^3.7.1",
         "tailwindCSS": "npm:tailwindcss@^3.4.17"
     }
 }
