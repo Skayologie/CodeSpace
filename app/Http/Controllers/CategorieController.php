@@ -15,9 +15,8 @@ class CategorieController extends Controller
     public function index()
     {
         //
-        return response()->json([
-            'content' => File::get(resource_path("views/forms/category.blade.php"))
-        ]);
+        return view("Admin.Pages.categories");
+
     }
 
     /**
@@ -26,6 +25,9 @@ class CategorieController extends Controller
     public function create()
     {
         //
+        return response()->json([
+            'content' => File::get(resource_path("views/forms/category.blade.php"))
+        ]);
     }
 
     /**

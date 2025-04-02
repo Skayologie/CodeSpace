@@ -970,58 +970,27 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 var RenderForms = /*#__PURE__*/function () {
   function RenderForms() {
     _classCallCheck(this, RenderForms);
-    this.init();
   }
   return _createClass(RenderForms, [{
-    key: "init",
-    value: function init() {
-      var _this = this;
-      document.getElementById('category').addEventListener('click', function () {
-        _this.renderCategoryForm();
-      });
-      document.getElementById('tag').addEventListener('click', function () {
-        _this.renderTagForm();
-      });
-    }
-  }, {
-    key: "renderCommunityForm",
-    value: function renderCommunityForm() {}
-  }, {
-    key: "renderCategoryForm",
-    value: function renderCategoryForm() {
-      var _this2 = this;
-      fetch('/Categorie').then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        document.getElementById("ContainForm").innerHTML = data.content;
-        document.getElementById("closeButton").addEventListener('click', function () {
-          document.getElementById("ContainForm").innerHTML = "";
+    key: "render",
+    value: function render(endpoint, ActionIdBtn) {
+      var btn = document.getElementById(ActionIdBtn);
+      var loading = document.getElementById("LoadingOne");
+      btn.addEventListener("click", function () {
+        loading.classList.remove('hidden');
+        $.ajax({
+          url: endpoint,
+          success: function success(result) {
+            loading.classList.add('hidden');
+            document.getElementById("ContainForm").innerHTML = result.content;
+            document.getElementById("closeButton").addEventListener('click', function () {
+              document.getElementById("ContainForm").innerHTML = "";
+            });
+            document.getElementById("cancelButton").addEventListener('click', function () {
+              document.getElementById("ContainForm").innerHTML = "";
+            });
+          }
         });
-        document.getElementById("cancelButton").addEventListener('click', function () {
-          document.getElementById("ContainForm").innerHTML = "";
-        });
-        _this2.SideBarFormEvents();
-      })["catch"](function (error) {
-        return console.error('Error fetching Blade file:', error);
-      });
-    }
-  }, {
-    key: "renderTagForm",
-    value: function renderTagForm() {
-      var _this3 = this;
-      fetch('/Tag').then(function (response) {
-        return response.json();
-      }).then(function (data) {
-        document.getElementById("ContainForm").innerHTML = data.content;
-        document.getElementById("closeButton").addEventListener('click', function () {
-          document.getElementById("ContainForm").innerHTML = "";
-        });
-        document.getElementById("cancelButton").addEventListener('click', function () {
-          document.getElementById("ContainForm").innerHTML = "";
-        });
-        _this3.SideBarFormEvents();
-      })["catch"](function (error) {
-        return console.error('Error fetching Blade file:', error);
       });
     }
   }, {
@@ -1074,35 +1043,6 @@ var RenderForms = /*#__PURE__*/function () {
         }
       });
 
-      // // Private toggle functionality
-      // privateToggle.addEventListener('change', function() {
-      //     if (this.checked) {
-      //         // Disable profile display when private is enabled
-      //         profileDisplayOption.classList.add('opacity-50');
-      //         profileDisplayCheck.classList.remove('bg-blue-600');
-      //         profileDisplayCheck.classList.add('bg-gray-300');
-      //     } else {
-      //         // Enable profile display when private is disabled
-      //         profileDisplayOption.classList.remove('opacity-50');
-      //         profileDisplayCheck.classList.add('bg-blue-600');
-      //         profileDisplayCheck.classList.remove('bg-gray-300');
-      //     }
-      // });
-      //
-      // // Profile display toggle
-      // profileDisplayCheck.addEventListener('click', function() {
-      //     // Only allow toggling if private mode is not enabled
-      //     if (!privateToggle.checked) {
-      //         if (this.classList.contains('bg-blue-600')) {
-      //             this.classList.remove('bg-blue-600');
-      //             this.classList.add('bg-gray-300');
-      //         } else {
-      //             this.classList.add('bg-blue-600');
-      //             this.classList.remove('bg-gray-300');
-      //         }
-      //     }
-      // });
-
       // Close button functionality
       closeButton.addEventListener('click', function () {
         // In a real application, this would close the modal
@@ -1138,6 +1078,49 @@ var RenderForms = /*#__PURE__*/function () {
         // Display form data (in a real app, you would send this to a server)
         console.log('Form submitted with data:', formData);
         alert('Form submitted successfully: ' + JSON.stringify(formData, null, 2));
+      });
+    }
+  }]);
+}();
+
+
+/***/ }),
+
+/***/ "./resources/js/Events/RenderPage.js":
+/*!*******************************************!*\
+  !*** ./resources/js/Events/RenderPage.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ Render)
+/* harmony export */ });
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _classCallCheck(a, n) { if (!(a instanceof n)) throw new TypeError("Cannot call a class as a function"); }
+function _defineProperties(e, r) { for (var t = 0; t < r.length; t++) { var o = r[t]; o.enumerable = o.enumerable || !1, o.configurable = !0, "value" in o && (o.writable = !0), Object.defineProperty(e, _toPropertyKey(o.key), o); } }
+function _createClass(e, r, t) { return r && _defineProperties(e.prototype, r), t && _defineProperties(e, t), Object.defineProperty(e, "prototype", { writable: !1 }), e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var Render = /*#__PURE__*/function () {
+  function Render() {
+    _classCallCheck(this, Render);
+  }
+  return _createClass(Render, [{
+    key: "render",
+    value: function render(endpoint, ActionIdBtn, renderPlace) {
+      var place = document.getElementById(renderPlace);
+      var btn = document.getElementById(ActionIdBtn);
+      var loading = document.getElementById("LoadingOne");
+      btn.addEventListener("click", function () {
+        loading.classList.remove('hidden');
+        $.ajax({
+          url: endpoint,
+          success: function success(result) {
+            loading.classList.add('hidden');
+            place.innerHTML = result;
+          }
+        });
       });
     }
   }]);
@@ -1208,6 +1191,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Events_PostForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Events/PostForm */ "./resources/js/Events/PostForm.js");
 /* harmony import */ var _Events_Header__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Events/Header */ "./resources/js/Events/Header.js");
 /* harmony import */ var _Dashboard_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Dashboard/index */ "./resources/js/Dashboard/index.js");
+/* harmony import */ var _Events_RenderPage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Events/RenderPage */ "./resources/js/Events/RenderPage.js");
+/* harmony import */ var _Events_RenderForms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Events/RenderForms */ "./resources/js/Events/RenderForms.js");
+
+
 
 
 
@@ -1223,7 +1210,14 @@ if (path !== "/Dashboard") {
   });
 } else {
   document.addEventListener("DOMContentLoaded", function () {
+    var view = new _Events_RenderPage__WEBPACK_IMPORTED_MODULE_5__["default"]();
+    var form = new _Events_RenderForms__WEBPACK_IMPORTED_MODULE_6__["default"]();
     new _Dashboard_index__WEBPACK_IMPORTED_MODULE_4__["default"]();
+    form.render("/Categorie/create", "category");
+    form.render("/Tag/create", "tag");
+    view.render("Theme", "ManageThemes", "AdminArea");
+    view.render("Categorie", "ManageCategories", "AdminArea");
+    view.render("Tag", "ManageTags", "AdminArea");
   });
 }
 
