@@ -1,10 +1,12 @@
 <div id="ContainForm">
 
 </div>
+
 <x-app-layout>
+
     <div>
 
-        <div>
+        <div id="AdminArea">
 
             <h2 class="main-title">Dashboard</h2>
             <div class="row stat-cards">

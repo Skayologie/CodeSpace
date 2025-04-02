@@ -43,8 +43,8 @@
                         </span>
                     </a>
                     <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">Manage categories</a>
+                        <li id="ManageCategories">
+                            <a href="#ManageCategory">Manage categories</a>
                         </li>
                         <li id="category">
                             <a href="#Category">Add Categorie</a>
@@ -60,8 +60,8 @@
                         </span>
                     </a>
                     <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">Manage tags</a>
+                        <li id="ManageTags">
+                            <a href="#ManageTags">Manage tags</a>
                         </li>
                         <li  id="tag" >
                             <a href="#Tag">Add tag</a>
@@ -77,8 +77,8 @@
                         </span>
                     </a>
                     <ul class="cat-sub-menu">
-                        <li>
-                            <a href="categories.html">Manage Themes</a>
+                        <li id="ManageThemes">
+                            <a href="#ManageThemes">Manage Themes</a>
                         </li>
                         <li>
                             <a id="category">Add Theme</a>
@@ -100,21 +100,10 @@
                     </ul>
                 </li>
                 <li>
-                    <a class="show-cat-btn" href="##">
-                        <span class="icon user-3" aria-hidden="true"></span>Users
-                        <span class="category__btn transparent-btn" title="Open list">
-                            <span class="sr-only">Open list</span>
-                            <span class="icon arrow-down" aria-hidden="true"></span>
-                        </span>
+                    <a id="ManageUsers" class="show-cat-btn" href="##">
+                        <span class="icon user-3" aria-hidden="true"></span>Manage Users
                     </a>
-                    <ul class="cat-sub-menu">
-                        <li>
-                            <a href="users-01.html">Users-01</a>
-                        </li>
-                        <li>
-                            <a href="users-02.html">Users-02</a>
-                        </li>
-                    </ul>
+
                 </li>
 
 
