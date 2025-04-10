@@ -99,8 +99,8 @@ communityNameInput.addEventListener('input', () => {
 descriptionInput.addEventListener('input', () => {
     const length = descriptionInput.value.length;
     descCounter.textContent = length;
-    previewDescription.textContent = descriptionInput.value || 'Hello this is community for you';
-    previewDescription1.textContent = descriptionInput.value || 'Hello this is community for you';
+    previewDescription.textContent = descriptionInput.value || 'Hello this is community.blade.php for you';
+    previewDescription1.textContent = descriptionInput.value || 'Hello this is community.blade.php for you';
 });
 
 

@@ -94,7 +94,7 @@ export default class PostForm {
         this.changeURL(selectedContent.id)
     }
     changeURL(newURL) {
-        history.replaceState(null, "New Page", "/Post?Type="+newURL);
+        history.replaceState(null, "New Page", "/Home?Type="+newURL);
     }
     addTag(tagText,id) {
         if (tagText.trim() === "" || this.tags.includes(tagText)) return;

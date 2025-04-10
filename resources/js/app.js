@@ -7,15 +7,18 @@ import Header from "./Events/Header";
 import Dashboard from "./Dashboard/index";
 import Render from "./Events/RenderPage";
 import RenderForms from "./Events/RenderForms";
+import StoreAJAX from "./Events/StoreAJAX";
 
 
 const path = window.location.pathname;
 if (path !== "/Dashboard"){
     document.addEventListener("DOMContentLoaded", () => {
         new Dropdown();
-        new Community();
         new Header();
-        new PostForm();
+        let view = new Render()
+        let form = new RenderForms()
+        form.render("/Community/create","openModalBtn");
+        view.render("Post","CreatePost","UserArea")
     });
 }else{
     document.addEventListener("DOMContentLoaded", () => {
@@ -25,6 +28,7 @@ if (path !== "/Dashboard"){
 
         form.render("/Categorie/create","category");
         form.render("/Tag/create","tag");
+        form.render("/Theme/create","theme");
         view.render("Theme","ManageThemes","AdminArea")
         view.render("Categorie","ManageCategories","AdminArea")
         view.render("Tag","ManageTags","AdminArea")

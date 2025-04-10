@@ -99,8 +99,8 @@ export default class Community {
         this.descriptionInput.addEventListener('input', () => {
             const length = this.descriptionInput.value.length;
             this.descCounter.textContent = length;
-            this.previewDescription.textContent = this.descriptionInput.value || 'Hello this is community for you';
-            this.previewDescription1.textContent = this.descriptionInput.value || 'Hello this is community for you';
+            this.previewDescription.textContent = this.descriptionInput.value || 'Hello this is community.blade.php for you';
+            this.previewDescription1.textContent = this.descriptionInput.value || 'Hello this is community.blade.php for you';
         });
 
 

@@ -3,7 +3,7 @@ export default class Form {
     constructor() {
 
         this.form = document.querySelector("#PostForm");
-        if (!this.form) throw new Error("Form not found!");
+        if (!this.form) throw new Error("Form not found!this is");
 
         // Select elements
         this.titleInput = document.querySelector("[name='title']");
@@ -25,13 +25,8 @@ export default class Form {
 
 
     init() {
-
         this.titleInput.addEventListener("input", () => this.handleTitleValidation());
-        this.description.addEventListener("input", () => this.handleDescriptionUpdate());
-        // this.privateToggle.addEventListener("change", () => this.handlePrivateToggle());
-        // this.profileDisplayCheck.addEventListener("click", () => this.handleProfileDisplay());
-        // this.closeButton.addEventListener("click", () => alert("Modal would close here"));
-        // this.cancelButton.addEventListener("click", () => alert("Action cancelled"));
+        // this.description.addEventListener("input", () => this.handleDescriptionUpdate());
         this.btnSubmit.addEventListener('click', (event) => this.validation(event));
     }
 
