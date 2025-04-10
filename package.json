@@ -27,6 +27,7 @@
     },
     "dependencies": {
         "jquery": "^3.7.1",
+        "sonner": "^2.0.3",
         "tailwindCSS": "npm:tailwindcss@^3.4.17"
     }
 }
