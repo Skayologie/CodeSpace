@@ -1,4 +1,4 @@
-<div class="bg-black/40 fixed z-10 w-full h-[100vh] flex justify-center items-center">
+<div id="themeForm" class="bg-black/40 fixed z-10 w-full h-[100vh] flex justify-center items-center">
     <div class=" fixed z-10 ">
         <div>
             <div class="bg-white rounded-lg shadow-lg w-[700px] max-w-md p-6 relative">
@@ -12,14 +12,14 @@
                     </button>
                 </div>
                 <!-- Form -->
-                <form id="customFlowForm">
+                <form id="customFlowForm" >
                     <!-- Title Field -->
                     <div class="mb-4">
                         <div class="relative">
                             <input
                                 type="text"
                                 id="title"
-                                placeholder="Tag name*"
+                                placeholder="Theme name*"
                                 class="w-full px-3 py-3 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                                 maxlength="50"
                                 required
@@ -35,14 +35,26 @@
                             <span id="titleCounter" class="text-xs text-gray-500">50</span>
                         </div>
                     </div>
-
+                    <div id="optionalWay">
+                        <label for="parentSelection">
+                            Parent Theme
+                        </label>
+                        <select
+                            id="parentSelection"
+                            class="mb-4 w-full px-3 py-3 bg-gray-100 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        >
+                            <option>Hello</option>
+                        </select>
+                    </div>
+                    <input id="isParent" type="checkbox">
+                    <label for="isParent">This is a parent ?</label>
                     <input type="hidden" value="" id="description">
                     <!-- Action Buttons -->
                     <div class="flex justify-end space-x-2">
                         <button type="button" id="cancelButton" class="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-500">
                             Annuler
                         </button>
-                        <button type="submit" id="submitButton" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button type="submit" id="ThemeSubmitButton" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             Soumettre
                         </button>
                     </div>
@@ -51,3 +63,4 @@
         </div>
     </div>
 </div>
+
