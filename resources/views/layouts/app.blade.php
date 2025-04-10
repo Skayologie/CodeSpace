@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Code Space | Dashboard</title>
     <!-- Favicon -->
     <link rel="shortcut icon" href="./img/svg/logo.svg" type="image/x-icon">
@@ -16,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sonner-js@1.0.2/sonner.min.css" />
 
 
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -23,6 +25,9 @@
 </head>
 
 <body>
+<div id="toast" class="fixed z-50 right-0 p-[60px]">
+
+</div>
 
 <div id="LoadingOne" class="hidden fixed w-full h-full z-30 items-center block p-6 bg-white border border-gray-100 rounded-lg shadow-md dark:bg-gray-800/50 dark:border-gray-800 ">
     <div role="status" class=" flex justify-center items-center h-full">
@@ -75,6 +80,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 
 <script src="https://kit.fontawesome.com/352cf65264.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sonner-js@1.0.2/sonner.iife.min.js"></script>
 
 </body>
 

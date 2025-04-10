@@ -80,8 +80,8 @@
                         <li id="ManageThemes">
                             <a href="#ManageThemes">Manage Themes</a>
                         </li>
-                        <li>
-                            <a id="category">Add Theme</a>
+                        <li id="theme">
+                            <a id="theme">Add Theme</a>
                         </li>
                     </ul>
                 </li>

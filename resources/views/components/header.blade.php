@@ -50,13 +50,13 @@
                 </button>
 
                 <!-- Center - Create Button with Dropdown -->
-                <div class="relative group">
-                    <a href="{{route("Post.index")}}?Type=content-texte" class=" hover:bg-gray-300 text-gray-800 font-semibold py-2 px-8 rounded-full flex items-center transition">
+                <div id="CreatePost" class="relative group">
+                    <div href="{{route("Post.index")}}?Type=content-texte" class=" hover:bg-gray-300 text-gray-800 font-semibold py-2 px-8 rounded-full flex items-center transition">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
                         </svg>
                         Créer
-                    </a>
+                    </div>
 
                 </div>
 
