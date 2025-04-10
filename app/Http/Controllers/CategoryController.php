@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Http\Requests\StoreCategorieRequest;
 use App\Http\Requests\UpdateCategorieRequest;
+use App\Models\Category;
+use App\Models\Tag;
+use App\Models\Theme;
 use Illuminate\Support\Facades\File;
 
-class CategorieController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +18,10 @@ class CategorieController extends Controller
     public function index()
     {
         //
-        return view("Admin.Pages.categories");
-
+        $categories = Category::all();
+        return view("Admin.Pages.categories",[
+            'categories'=>$categories
+        ]);
     }
 
     /**
@@ -36,12 +41,23 @@ class CategorieController extends Controller
     public function store(StoreCategorieRequest $request)
     {
         //
+        try {
+            $data = $request->validated();
+            Category::create($data);
+            return response()->json([
+                "message"=>"the Category has been created successfully"
+            ]);
+        }catch(\Exception $e){
+            return response()->json([
+                "error"=>$e->getMessage()
+            ]);
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Categorie $categorie)
+    public function show(Category $categorie)
     {
         //
     }
@@ -49,7 +65,7 @@ class CategorieController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Categorie $categorie)
+    public function edit(Category $categorie)
     {
         //
     }
@@ -57,7 +73,7 @@ class CategorieController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategorieRequest $request, Categorie $categorie)
+    public function update(UpdateCategorieRequest $request, Category $categorie)
     {
         //
     }
@@ -65,7 +81,7 @@ class CategorieController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Categorie $categorie)
+    public function destroy(Category $categorie)
     {
         //
     }

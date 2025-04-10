@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
+use Illuminate\Support\Facades\File;
 
 class CommunityController extends Controller
 {
@@ -22,6 +23,9 @@ class CommunityController extends Controller
     public function create()
     {
         //
+        return response()->json([
+            'content' => File::get(resource_path("views/forms/community.blade.php"))
+        ]);
     }
 
     /**

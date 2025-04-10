@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Theme;
 use App\Http\Requests\StoreThemeRequest;
 use App\Http\Requests\UpdateThemeRequest;
+use Illuminate\Support\Facades\File;
+use Mockery\Exception;
 
 class ThemeController extends Controller
 {
@@ -26,6 +28,14 @@ class ThemeController extends Controller
     public function create()
     {
         //
+        return response()->json([
+            'content' => File::get(resource_path("views/forms/theme.blade.php")),
+        ]);
+    }
+
+    public function getAllThemes(){
+        $themes = Theme::whereNull('parent')->with('subthemes')->get();
+        return response()->json($themes);
     }
 
     /**
@@ -34,6 +44,17 @@ class ThemeController extends Controller
     public function store(StoreThemeRequest $request)
     {
         //
+        try {
+            $data = $request->validated();
+            Theme::create($data);
+            return response()->json([
+                "message"=>"the theme has been created successfully"
+            ]);
+        }catch(\Exception $e){
+            return response()->json([
+                "error"=>$e->getMessage()
+            ]);
+        }
     }
 
     /**
