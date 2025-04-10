@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ThemeController;
 use App\Models\Tag;
@@ -11,7 +11,8 @@ Route::middleware(["auth", "role:admin"])->group(function () {
         return view('Admin.index');
     })->name('admin.Dashboard');
 
-    Route::resource('/Categorie', CategorieController::class);
+    Route::resource('/Categorie', CategoryController::class);
     Route::resource('/Tag', TagController::class);
     Route::resource('/Theme', ThemeController::class);
+    Route::get('/AllThemes', [ThemeController::class,"getAllThemes"]);
 });
