@@ -131,29 +131,116 @@ export default class Dashboard {
         checkers.forEach(checker => checker.addEventListener('change', updateCheckedSum));
     }
 
+
     initializeCharts() {
+        let ChartData = [];
+
         const ctx = document.getElementById('myChart')?.getContext('2d');
         if (!ctx) return;
 
-        new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: ['Dec', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-                datasets: [
-                    { label: 'Last 6 months', data: [35, 27, 40, 15, 30, 25, 45], borderColor: 'rgba(95, 46, 234, 1)', borderWidth: 2 },
-                    { label: 'Previous', data: [20, 36, 16, 45, 29, 32, 10], borderColor: 'rgba(75, 222, 151, 1)', borderWidth: 2 }
-                ]
-            },
-            options: {
-                scales: {
-                    y: { min: 0, max: 100, ticks: { stepSize: 25 }, grid: { display: false } },
-                    x: { grid: { color: '#ddd' } }
-                },
-                plugins: {
-                    legend: { position: 'top', align: 'end', labels: { boxWidth: 8, boxHeight: 8, usePointStyle: true, font: { size: 12, weight: '500' } } },
-                    title: { display: true, text: ['Platform Visitor Statistics', 'Nov - July'], align: 'start', color: '#171717', font: { size: 16, weight: '600', lineHeight: 1.4 } }
-                }
+        let stats = [];
+
+        async function getActiveUsers() {
+            const response = await fetch("http://127.0.0.1:9999/ActiveUsers");
+            const data = await response.json();
+
+            for (let i = 1; i <= 12; i++) {
+                stats[i] = 0;
             }
-        });
+
+            let monthCount = 1;
+
+            data.forEach(month => {
+                if (month.Month === monthCount) {
+                    stats[month.Month] = month.UsersActive;
+                    console.log("This is month Count " + monthCount);
+                    monthCount++;
+                } else if (month.Month !== monthCount) {
+                    while (monthCount < month.Month) {
+                        console.log(`This is a missing month: ${monthCount}`);
+                        stats[monthCount] = 0;
+                        monthCount++;
+                    }
+                }
+            });
+
+            while (monthCount <= 12) {
+                console.log(`This is a missing month: ${monthCount}`);
+                stats[monthCount] = 0;
+                monthCount++;
+            }
+
+            let maxVal = 0;
+
+            stats.forEach(ele => {
+                if (ele > maxVal) {
+                    maxVal = ele;
+                }
+                ChartData.push(ele);
+            });
+
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [
+                        {
+                            label: 'Last 12 Month ',
+                            data: ChartData,
+                            borderColor: 'rgba(95, 46, 234, 1)',
+                            borderWidth: 2,
+                        },
+                    ],
+                },
+                options: {
+                    scales: {
+                        y: {
+                            min: 0,
+                            max: maxVal,
+                            ticks: {
+                                stepSize: 25,
+                            },
+                            grid: {
+                                display: false,
+                            },
+                        },
+                        x: {
+                            grid: {
+                                color: '#ddd',
+                            },
+                        },
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                boxWidth: 8,
+                                boxHeight: 8,
+                                usePointStyle: true,
+                                font: {
+                                    size: 12,
+                                    weight: '500',
+                                },
+                            },
+                        },
+                        title: {
+                            display: true,
+                            text: ['Platform Visitor Statistics', 'Jan - Dec'],
+                            align: 'start',
+                            color: '#171717',
+                            font: {
+                                size: 16,
+                                weight: '600',
+                                lineHeight: 1.4,
+                            },
+                        },
+                    },
+                },
+            });
+        }
+
+        getActiveUsers();
     }
+
 }
