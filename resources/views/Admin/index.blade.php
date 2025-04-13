@@ -16,7 +16,7 @@
                             <i data-feather="bar-chart-2" aria-hidden="true"></i>
                         </div>
                         <div class="stat-cards-info">
-                            <p class="stat-cards-info__num">1478286</p>
+                            <p class="stat-cards-info__num">{{$registeredUsers}}</p>
                             <p class="stat-cards-info__title">Total registered users</p>
                         </div>
                     </article>
@@ -27,7 +27,7 @@
                             <i data-feather="file" aria-hidden="true"></i>
                         </div>
                         <div class="stat-cards-info">
-                            <p class="stat-cards-info__num">1478 286</p>
+                            <p class="stat-cards-info__num">{{$activeUsers}}</p>
                             <p class="stat-cards-info__title">Active users</p>
                         </div>
                     </article>
@@ -38,7 +38,7 @@
                             <i data-feather="file" aria-hidden="true"></i>
                         </div>
                         <div class="stat-cards-info">
-                            <p class="stat-cards-info__num">524000</p>
+                            <p class="stat-cards-info__num">{{$totalPosts}}</p>
                             <p class="stat-cards-info__title">Total posts created</p>
                         </div>
                     </article>
@@ -49,7 +49,7 @@
                             <i data-feather="feather" aria-hidden="true"></i>
                         </div>
                         <div class="stat-cards-info">
-                            <p class="stat-cards-info__num">256545</p>
+                            <p class="stat-cards-info__num">{{$totalCommunities}}</p>
                             <p class="stat-cards-info__title">Total communities</p>
                         </div>
                     </article>
