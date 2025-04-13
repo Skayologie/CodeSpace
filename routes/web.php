@@ -8,14 +8,7 @@ require base_path('routes/admin.php');
 require base_path('routes/user.php');
 
 Route::get('/', function () {
-    $role = session()->get("role");
-    if ($role === "admin") {
-        return redirect()->to(route('admin.Dashboard'));
-    } elseif ($role === "user") {
         return redirect()->to(route('user.Homepage'));
-    } else {
-        return redirect()->to(route('user.Homepage'));
-    }
 })->name("/");
 
 Route::get('/Home', function () {
