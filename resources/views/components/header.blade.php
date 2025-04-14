@@ -1,4 +1,4 @@
-@props(["auth"])
+@props(["auth","user"])
 <header class="bg-white h-16 px-4 flex items-center justify-between border-b border-gray-300 sticky top-0 z-50">
     <!-- Logo Section -->
     <div class="flex items-center">
@@ -19,7 +19,6 @@
         <input type="text" placeholder="Rechercher sur Reddit" class="block w-full bg-gray-100 border border-gray-200 rounded-full pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500">
       </div>
     </div>
-
 
     <!-- Right Side Buttons -->
     <div class="flex items-center space-x-2">
@@ -71,7 +70,8 @@
 
                     <!-- Profile Button with Dropdown -->
                     <div class="relative">
-                        <button id="profileButton" class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white border-2 border-white">
+                        <button id="profileButton" class="w-10 h-10 overflow-hidden rounded-full bg-teal-500 flex items-center justify-center text-white border-2 border-white">
+                            <img src="{{$user->profilePicture}}" />
                             <div class="absolute bottom-0 right-0 w-2 h-2 bg-green-400 rounded-full border border-white"></div>
                         </button>
 
@@ -81,13 +81,14 @@
                             <div class="p-4 border-b border-gray-200">
                                 <div class="flex items-center">
                                     <div class="relative flex-shrink-0">
-                                        <div class="w-10 h-10 rounded-full bg-teal-500 flex items-center justify-center text-white">
+                                        <div class="w-10 h-10 overflow-hidden rounded-full bg-teal-500 flex items-center justify-center text-white">
+                                            <img src="{{$user->profilePicture}}" />
                                             <div class="absolute bottom-0 right-0 w-2 h-2 bg-green-400 rounded-full border border-white"></div>
                                         </div>
                                     </div>
                                     <div class="ml-3">
                                         <div class="font-medium text-gray-900">Voir le profil</div>
-                                        <div class="text-sm text-gray-500">u/Double-Yak-203</div>
+                                        <div class="text-sm text-gray-500">u/{{$user->username}}</div>
                                     </div>
                                 </div>
                             </div>

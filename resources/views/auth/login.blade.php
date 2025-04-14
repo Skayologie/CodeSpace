@@ -38,14 +38,19 @@
         @endif
       <!-- Social login buttons -->
       <div class="space-y-3 mb-4">
-        <button class="flex items-center justify-center w-full py-2 px-4 border border-gray-300 rounded-full hover:bg-gray-50">
-          <img src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg" class="w-5 h-5 mr-2" alt="Google logo">
-          Continuer avec Google
-        </button>
-        <button class="flex items-center justify-center w-full py-2 px-4 border border-gray-300 rounded-full hover:bg-gray-50">
-          <img src="https://www.svgrepo.com/show/69341/apple-logo.svg" class="w-5 h-5 mr-2" alt="Apple logo">
-          Continue With Apple
-        </button>
+          <a href="{{route("loginGoogle")}}" class="flex items-center justify-center w-full py-2 px-4 border border-gray-300 rounded-full hover:bg-gray-50">
+              <div class="flex justify-center items-center gap-2">
+                  <i class="fa-brands fa-google text-2xl "></i>
+                  <p>Continue With Google</p>
+              </div>
+          </a>
+          <a  href="{{route("loginGithub")}}" class="flex items-center justify-center w-full py-2 px-4 border border-gray-300 rounded-full hover:bg-gray-50">
+              <div class="flex justify-center items-center gap-2">
+                  <i class="text-2xl fa-brands fa-github "></i>
+                  <p>Continue With Github</p>
+              </div>
+          </a>
+
       </div>
 
       <!-- Divider -->

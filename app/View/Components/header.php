@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 class header extends Component
 {
     public $auth;
-
+    public $user;
     /**
      * Create a new component instance.
      */
@@ -19,6 +19,7 @@ class header extends Component
         $user = session()->get("user");
         if ($user != null){
             $this->auth = "true";
+            $this->user = $user;
         }else{
             $this->auth = "false";
         }
