@@ -42,7 +42,7 @@
                 <div class="col-md-6 col-xl-3">
                     <article class="stat-cards-item">
                         <div class="stat-cards-icon primary">
-                            <i data-feather="bar-chart-2" aria-hidden="true"></i>
+                            <i class="fa-solid fa-users"></i>
                         </div>
                         <div class="stat-cards-info">
                             <p class="stat-cards-info__num">{{$registeredUsers}}</p>
@@ -53,7 +53,7 @@
                 <div class="col-md-6 col-xl-3">
                     <article class="stat-cards-item">
                         <div class="stat-cards-icon warning">
-                            <i data-feather="file" aria-hidden="true"></i>
+                            <i class="fa-solid fa-chart-line"></i>
                         </div>
                         <div class="stat-cards-info">
                             <p class="stat-cards-info__num">{{$activeUsers}}</p>
@@ -64,7 +64,7 @@
                 <div class="col-md-6 col-xl-3">
                     <article class="stat-cards-item">
                         <div class="stat-cards-icon purple">
-                            <i data-feather="file" aria-hidden="true"></i>
+                            <i class="fa-solid fa-newspaper"></i>
                         </div>
                         <div class="stat-cards-info">
                             <p class="stat-cards-info__num">{{$totalPosts}}</p>
@@ -75,7 +75,7 @@
                 <div class="col-md-6 col-xl-3">
                     <article class="stat-cards-item">
                         <div class="stat-cards-icon success">
-                            <i data-feather="feather" aria-hidden="true"></i>
+                            <i class="fa-solid fa-comments"></i>
                         </div>
                         <div class="stat-cards-info">
                             <p class="stat-cards-info__num">{{$totalCommunities}}</p>
