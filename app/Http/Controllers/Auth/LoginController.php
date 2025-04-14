@@ -6,7 +6,10 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
 use App\Repository\Eloquent\LoginRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
+use Laravel\Socialite\Facades\Socialite;
 
 class LoginController
 {
@@ -38,5 +41,46 @@ class LoginController
         }catch(\Exception $e){
             return redirect()->to(route("login.index"))->with('error',$e->getMessage());
         }
+    }
+
+
+    public function github(){
+        return Socialite::driver('github')->redirect();
+    }
+    public function githubRedirect(){
+        $user = Socialite::driver("github")->user();
+        $user = User::firstOrCreate([
+            "email"=>$user->getEmail()
+        ],[
+            "username"=>$user->getName(),
+            "email"=>$user->getEmail(),
+            "password"=>Hash::make(Str::password()),
+            "profilePicture"=>$user->getAvatar(),
+            "bio"=>"bio",
+        ]);
+        session()->put("user",$user);
+        session()->put("role","user");
+        return redirect()->to(route("/"));
+    }
+
+
+
+    public function google(){
+        return Socialite::driver('google')->redirect();
+    }
+    public function googleRedirect(){
+        $user = Socialite::driver("google")->user();
+        $user = User::firstOrCreate([
+            "email"=>$user->getEmail()
+        ],[
+            "username"=>$user->getName(),
+            "email"=>$user->getEmail(),
+            "password"=>Hash::make(Str::password()),
+            "profilePicture"=>$user->getAvatar(),
+            "bio"=>"bio",
+        ]);
+        session()->put("user",$user);
+        session()->put("role","user");
+        return redirect()->to(route("/"));
     }
 }
