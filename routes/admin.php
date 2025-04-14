@@ -23,5 +23,7 @@ Route::middleware(["auth", "role:admin"])->group(function () {
     Route::resource('/Tag', TagController::class);
     Route::resource('/Theme', ThemeController::class);
     Route::get('/AllThemes', [ThemeController::class,"getAllThemes"]);
+    Route::get("/ActiveUsers",[DashboardController::class,"Active_Users_Monthly"]);
+    Route::get("/CategoryStats",[DashboardController::class,"Get_Categories_Stats"]);
+    Route::get("/Stats/{type}",[DashboardController::class,"index"]);
 });
-Route::get("/ActiveUsers",[DashboardController::class,"Active_Users_Monthly"]);

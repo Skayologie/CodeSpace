@@ -1,4 +1,5 @@
 import RenderForms from "../Events/RenderForms";
+import Render from "../Events/RenderPage";
 
 export default class Dashboard {
     constructor() {
@@ -17,6 +18,8 @@ export default class Dashboard {
         this.handleCheckboxSelection();
         this.handleCheckedSum();
         this.initializeCharts();
+        this.get_top_posts();
+        this.get_top_users();
     }
 
     handleSidebarToggle() {
@@ -131,9 +134,9 @@ export default class Dashboard {
         checkers.forEach(checker => checker.addEventListener('change', updateCheckedSum));
     }
 
-
     initializeCharts() {
         let ChartData = [];
+        this.get_Categories_stats()
 
         const ctx = document.getElementById('myChart')?.getContext('2d');
         if (!ctx) return;
@@ -178,7 +181,6 @@ export default class Dashboard {
                 }
                 ChartData.push(ele);
             });
-
             new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -243,4 +245,49 @@ export default class Dashboard {
         getActiveUsers();
     }
 
+    get_Categories_stats(){
+        let CategoriesStats = document.getElementById("CategoriesStats")
+        const getstats = async () => {
+            let response = await fetch("http://127.0.0.1:9999/CategoryStats")
+            let result = await response.json();
+            console.log();
+            document.querySelector(".top-cat-title p").innerHTML = result.length +` Categories, ${result.reduce((sum, item) => sum + item.Count, 0)} Posts`
+            result.forEach(ele=>{
+                CategoriesStats.innerHTML += `
+                        <li>
+                            <a href="##">
+                                <div class="top-cat-list__title">
+                                    ${ele.name} <span>${ele.Count}</span>
+                                </div>
+                            </a>
+                        </li>
+                    `;
+            })
+
+        }
+        getstats()
+    }
+
+
+    removeClass(query,removedClass){
+        let tableBTNS = document.querySelectorAll(query);
+        tableBTNS.forEach(ele=>{
+            ele.classList.remove(removedClass)
+        })
+    }
+    get_top_posts(){
+        this.renderTable("Stats/topPosts","get_top_postsBTN","tableContentData")
+    }
+    get_top_users(){
+        this.renderTable("Stats/topUsers","get_top_usersBTN","tableContentData")
+    }
+    renderTable(endPoint,actionBtn,renderPlace){
+        let view = new Render()
+        view.render(endPoint,actionBtn,renderPlace)
+        document.getElementById(actionBtn).addEventListener('click',()=>{
+            this.removeClass(".tableBTNS","ActiveBTN")
+            document.getElementById(actionBtn).classList.add("ActiveBTN")
+        })
+    }
 }
+

@@ -22,7 +22,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon document" aria-hidden="true"></span>Posts
+                        <div class="flex gap-2 items-center"><i class="text-xl fa-solid fa-newspaper"></i> Posts</div>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -36,7 +36,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon folder" aria-hidden="true"></span>Categories
+                        <div class="flex gap-2 items-center"><i class="text-xl fa-solid fa-layer-group"></i> Categories</div>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -53,7 +53,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                        <span class="icon folder" aria-hidden="true"></span>Tags
+                        <div class="flex gap-2 items-center"><i class="text-xl fa-solid fa-tag"></i> Tags</div>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>
@@ -87,7 +87,7 @@
                 </li>
                 <li>
                     <a class="show-cat-btn" href="##">
-                    <span class="icon user-3" aria-hidden="true"></span>Communities
+                        <div class="flex gap-2 items-center"><i class="text-xl fa-solid fa-comments"></i> Communities</div>
                         <span class="category__btn transparent-btn" title="Open list">
                             <span class="sr-only">Open list</span>
                             <span class="icon arrow-down" aria-hidden="true"></span>

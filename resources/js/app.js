@@ -25,7 +25,6 @@ if (path !== "/Dashboard"){
         let view = new Render()
         let form = new RenderForms()
         new Dashboard();
-
         form.render("/Categorie/create","category");
         form.render("/Tag/create","tag");
         form.render("/Theme/create","theme");

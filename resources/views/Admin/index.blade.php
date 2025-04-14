@@ -1,7 +1,12 @@
 <div id="ContainForm">
 
 </div>
-
+<style>
+    .ActiveBTN{
+        background-color: white !important;
+        color: black !important;
+    }
+</style>
 <x-app-layout>
 
     <div>
@@ -9,6 +14,30 @@
         <div id="AdminArea">
 
             <h2 class="main-title">Dashboard</h2>
+            <div class="bg-gradient-to-r from-orange-600 to-red-500 p-4 mb-4 rounded-full shadow-lg flex flex-wrap gap-3 ">
+                <button id="get_top_postsBTN" title="This calculated the top 5 posts that has more reaction and views " class="px-5 tableBTNS bg-orange-500 text-white py-2.5  font-medium rounded-full hover:bg-orange-50 hover:text-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-opacity-50 transition-all duration-300 shadow-md flex items-center space-x-2">
+                    <i class="fa-solid fa-arrow-trend-up"></i>
+                    <span>Top Posts</span>
+                </button>
+                <button  id="get_top_usersBTN"  class="tableBTNS px-5 py-2.5 bg-orange-500 text-white font-medium rounded-full hover:bg-orange-400  focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-opacity-50 transition-all duration-300 shadow-md flex items-center space-x-2">
+                    <i class="fa-solid fa-users"></i>
+                    <span>Top Users</span>
+                </button>
+                <button class="px-5 py-2.5 bg-orange-500 text-white font-medium rounded-full hover:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-opacity-50 transition-all duration-300 shadow-md flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                    </svg>
+                    <span>Profile</span>
+                </button>
+                <button class="px-5 py-2.5 bg-orange-500 text-white font-medium rounded-full hover:bg-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-300 focus:ring-opacity-50 transition-all duration-300 shadow-md flex items-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                    <span>Settings</span>
+                </button>
+            </div>
+
             <div class="row stat-cards">
                 <div class="col-md-6 col-xl-3">
                     <article class="stat-cards-item">
@@ -55,237 +84,24 @@
                     </article>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-lg-9">
                     <div class="chart">
                         <canvas id="myChart" aria-label="Site statistics" role="img"></canvas>
                     </div>
+
+
                     <div class="users-table table-wrapper">
-                        <table class="posts-table">
-                            <thead>
-                            <tr class="users-table-info">
-                                <th>
-                                    <label class="users-table__checkbox ms-20">
-                                        <input type="checkbox" class="check-all">Thumbnail
-                                    </label>
-                                </th>
-                                <th>Title</th>
-                                <th>Author</th>
-                                <th>Status</th>
-                                <th>Date</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <td>
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            <picture><source srcset="./img/categories/01.webp" type="image/webp"><img src="./img/categories/01.jpg" alt="category"></picture>
-                                        </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    Starting your traveling blog with Vasco
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture><source srcset="./img/avatar/avatar-face-04.webp" type="image/webp"><img src="./img/avatar/avatar-face-04.png" alt="User Name"></picture>
-                                        Jenny Wilson
-                                    </div>
-                                </td>
-                                <td><span class="badge-pending">Pending</span></td>
-                                <td>17.04.2021</td>
-                                <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            <picture><source srcset="./img/categories/02.webp" type="image/webp"><img src="./img/categories/02.jpg" alt="category"></picture>
-                                        </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    Start a blog to reach your creative peak
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture><source srcset="./img/avatar/avatar-face-03.webp" type="image/webp"><img src="./img/avatar/avatar-face-03.png" alt="User Name"></picture>
-                                        Annette Black
-                                    </div>
-                                </td>
-                                <td><span class="badge-pending">Pending</span></td>
-                                <td>23.04.2021</td>
-                                <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            <picture><source srcset="./img/categories/03.webp" type="image/webp"><img src="./img/categories/03.jpg" alt="category"></picture>
-                                        </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    Helping a local business reinvent itself
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture><source srcset="./img/avatar/avatar-face-02.webp" type="image/webp"><img src="./img/avatar/avatar-face-02.png" alt="User Name"></picture>
-                                        Kathryn Murphy
-                                    </div>
-                                </td>
-                                <td><span class="badge-active">Active</span></td>
-                                <td>17.04.2021</td>
-                                <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            <picture><source srcset="./img/categories/04.webp" type="image/webp"><img src="./img/categories/04.jpg" alt="category"></picture>
-                                        </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    Caring is the new marketing
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture><source srcset="./img/avatar/avatar-face-05.webp" type="image/webp"><img src="./img/avatar/avatar-face-05.png" alt="User Name"></picture>
-                                        Guy Hawkins
-                                    </div>
-                                </td>
-                                <td><span class="badge-active">Active</span></td>
-                                <td>17.04.2021</td>
-                                <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            <picture><source srcset="./img/categories/01.webp" type="image/webp"><img src="./img/categories/01.jpg" alt="category"></picture>
-                                        </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    How to build a loyal community online and offline
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture><source srcset="./img/avatar/avatar-face-03.webp" type="image/webp"><img src="./img/avatar/avatar-face-03.png" alt="User Name"></picture>
-                                        Robert Fox
-                                    </div>
-                                </td>
-                                <td><span class="badge-active">Active</span></td>
-                                <td>17.04.2021</td>
-                                <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label class="users-table__checkbox">
-                                        <input type="checkbox" class="check">
-                                        <div class="categories-table-img">
-                                            <picture><source srcset="./img/categories/03.webp" type="image/webp"><img src="./img/categories/03.jpg" alt="category"></picture>
-                                        </div>
-                                    </label>
-                                </td>
-                                <td>
-                                    How to build a loyal community online and offline
-                                </td>
-                                <td>
-                                    <div class="pages-table-img">
-                                        <picture><source srcset="./img/avatar/avatar-face-03.webp" type="image/webp"><img src="./img/avatar/avatar-face-03.png" alt="User Name"></picture>
-                                        Robert Fox
-                                    </div>
-                                </td>
-                                <td><span class="badge-active">Active</span></td>
-                                <td>17.04.2021</td>
-                                <td>
-                      <span class="p-relative">
-                        <button class="dropdown-btn transparent-btn" type="button" title="More info">
-                          <div class="sr-only">More info</div>
-                          <i data-feather="more-horizontal" aria-hidden="true"></i>
-                        </button>
-                        <ul class="users-item-dropdown dropdown">
-                          <li><a href="##">Edit</a></li>
-                          <li><a href="##">Quick edit</a></li>
-                          <li><a href="##">Trash</a></li>
-                        </ul>
-                      </span>
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+
+                        <div class="overflow-x-auto">
+                            <div id="tableContentData" class="min-w-full bg-white rounded-2xl shadow-md">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="col-lg-3">
+                <div  class="col-lg-3">
                     <article class="customers-wrapper">
                         <!-- <canvas id="customersChart" aria-label="Customers statistics" role="img"></canvas> -->
                         <!--              <p class="customers__title">New Customers <span>+958</span></p>
@@ -295,89 +111,10 @@
                     <article class="white-block">
                         <div class="top-cat-title">
                             <h3>Top categories</h3>
-                            <p>28 Categories, 1400 Posts</p>
+                            <p></p>
                         </div>
-                        <ul class="top-cat-list">
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        Lifestyle <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Dailiy lifestyle articles <span class="purple">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        Tutorials <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Coding tutorials <span class="blue">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        Technology <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Dailiy technology articles <span class="danger">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        UX design <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        UX design tips <span class="success">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        Interaction tips <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Interaction articles <span class="warning">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        App development <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Mobile development articles <span class="warning">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        Nature <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Wildlife animal articles <span class="warning">+472</span>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="##">
-                                    <div class="top-cat-list__title">
-                                        Geography <span>8.2k</span>
-                                    </div>
-                                    <div class="top-cat-list__subtitle">
-                                        Geography articles <span class="primary">+472</span>
-                                    </div>
-                                </a>
-                            </li>
+                        <ul id="CategoriesStats" class="top-cat-list">
+
                         </ul>
                     </article>
                 </div>
