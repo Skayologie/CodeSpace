@@ -37,4 +37,22 @@ export default class Render {
             }
         });
     }
+
+     renderWithStyle(endpoint , renderPlace, styleCallback){
+        let place = document.getElementById(renderPlace);
+        let loading = document.getElementById("LoadingOne");
+        loading.classList.remove('hidden');
+        $.ajax({
+            url: endpoint,
+            success: async function(result) {
+                loading.classList.add('hidden');
+                place.innerHTML = await styleCallback(result);
+            },
+            error: function(error) {
+                loading.classList.add('hidden');
+                place.innerHTML = "<p>Error loading content.</p>";
+                console.error("Error in AJAX:", error);
+            }
+        });
+    }
 }
