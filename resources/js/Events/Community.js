@@ -1,3 +1,4 @@
+import Render from "./RenderPage";
 
 
 export default class Community {
@@ -20,11 +21,54 @@ export default class Community {
         this.iconFileInput = document.getElementById('iconFileInput');
         this.bannerPreview = document.getElementById('bannerPreview');
         this.iconPreview = document.getElementById('iconPreview');
+        this.ThemesCommunity = document.getElementById("ThemesCommunity");
+        this.ChoosedThemes = [];
         this.CreateCommunity();
     }
     CreateCommunity(){
+        let view = new Render()
+        view.renderWithStyle("/AllThemes","ThemesCommunity",
+            async data => data.map(item=>
+                `
+                 <div class="theme-category">
+                    <div class="flex items-center mb-2">
+                        <div class="w-5 h-5 bg-blue-200 rounded mr-2"></div>
+                        <h4 class="font-medium">${item.name}</h4>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        ${(item.subthemes).map(subitem=>`<button value="${subitem.id}" class="buttonSubThemes bg-gray-100 hover:bg-gray-200 py-1 px-3 rounded-full text-sm">${subitem.name}</button>`).join("")}
+                    </div>
+                </div>
+                `
+        ).join(""))
+        let counter = document.getElementById("counterHowThemeThere");
+        setTimeout(()=>{
+            document.querySelectorAll('.buttonSubThemes').forEach((button)=>{
+                button.addEventListener("click",(e)=>{
+                    if (!this.ChoosedThemes.includes(e.target.value) && this.ChoosedThemes.length < 3){
+                        document.getElementById('choosedThemes').innerHTML += `<span data-value="${e.target.value}" id="${e.target.value}" class="  rounded-md ChoosedSingleTheme cursor-pointer  text-black px-3 py-1  border border-gray-700/50 ">${e.target.textContent}</span>`
+                        this.ChoosedThemes.push(e.target.value);
+                        counter.innerText = (parseInt(counter.innerText))+1
+                    }
+                })
+            })
+            setInterval(()=>{
+                document.querySelectorAll(".ChoosedSingleTheme").forEach((choosed)=>{
+                    choosed.addEventListener("click",(e)=>{
+                        this.ChoosedThemes.forEach((item,index)=>{
+                            if (item === e.target.getAttribute("data-value")){
+                                this.ChoosedThemes.splice(index , 1)
+                                counter.innerText = (parseInt(counter.innerText))-1
+                            }
+                        })
+                        e.target.remove()
 
-// Banner upload handling
+                    })
+                })
+            },1000)
+        },2000)
+
+        // Banner upload handling
         this.uploadBannerBtn.addEventListener('click', () => {
             this.bannerFileInput.click();
         });
@@ -71,6 +115,7 @@ export default class Community {
 // Event Listeners
         this.openModalBtn.addEventListener('click', () => {
             this.modalOverlay.classList.remove('hidden');
+
         });
 
         [this.closeBtn].forEach(btn => {
@@ -93,6 +138,7 @@ export default class Community {
             this.nameCounter.textContent = length;
             this.previewName.textContent = this.communityNameInput.value || 'Skayologie';
             this.previewName1.textContent = this.communityNameInput.value || 'Skayologie';
+
         });
 
 // Update character counter and preview for description
@@ -128,6 +174,7 @@ export default class Community {
             console.log(NextStep)
             NextStep.classList.add("bg-blue-600")
             NextStep.classList.remove("bg-gray-300")
+
         });
 
         document.getElementById('backBtn').addEventListener('click', () => {
