@@ -1,12 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Illuminate\Support\Str;
 
 use App\Http\Requests\RegisterUserRequest;
+use App\Mail\SendConfirmationMail;
 use App\Models\Role;
 use App\Models\User;
 use App\Repository\Eloquent\RegisterRepository;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterController
 {
@@ -23,14 +26,18 @@ class RegisterController
         $data = $request->validated();
         $data["bio"] = "Bio";
         try {
+            $tokenVerify = Str::random(10);
             $password = $data["password"];
             $Hashedpassword = $this->RegisterRepository->hashPassword($password);
             $data["password"] = $Hashedpassword;
+            $data["token_verification"] = $tokenVerify;
             $register = $this->RegisterRepository->create($data);
             if ($register){
                 $this->RegisterRepository->assignRole($register->id,2);
+                $SendConfirmationMail = new SendConfirmationMail($tokenVerify);
+                Mail::to($data["email"])->send($SendConfirmationMail);
             }
-            return redirect()->to(route("login.index"))->with('success',"Account has created successfully .");
+            return redirect()->to(route("login.index"))->with('success',"Account has created successfully . Please confirm you email first !");
         }catch(\Exception $e){
             return redirect()->to(route("register.index"))->with('error',$e->getMessage());
         }
