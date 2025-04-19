@@ -14,12 +14,14 @@ export default class RenderForms {
                 success: async function (result) {
                     loading.classList.add('hidden');
                     document.getElementById("ContainForm").innerHTML = result.content;
-                    document.getElementById("closeButton").addEventListener('click', () => {
-                        document.getElementById("ContainForm").innerHTML = ""
-                    })
-                    document.getElementById("cancelButton").addEventListener('click', () => {
-                        document.getElementById("ContainForm").innerHTML = ""
-                    })
+                    if (document.getElementById("closeButton") !== null){
+                        document.getElementById("closeButton").addEventListener('click', () => {
+                            document.getElementById("ContainForm").innerHTML = ""
+                        })
+                        document.getElementById("cancelButton").addEventListener('click', () => {
+                            document.getElementById("ContainForm").innerHTML = ""
+                        })
+                    }
                     if (ActionIdBtn === "theme"){
                         let response = await fetch("/AllThemes");
                         let parentSelection = document.getElementById('parentSelection');

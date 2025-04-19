@@ -20,7 +20,6 @@ export default class Community {
         this.iconFileInput = document.getElementById('iconFileInput');
         this.bannerPreview = document.getElementById('bannerPreview');
         this.iconPreview = document.getElementById('iconPreview');
-
         this.CreateCommunity();
     }
     CreateCommunity(){
@@ -90,15 +89,17 @@ export default class Community {
 // Update character counter and preview for name
         this.communityNameInput.addEventListener('input', () => {
             const length = this.communityNameInput.value.length;
+            console.log(this.communityNameInput.value)
             this.nameCounter.textContent = length;
             this.previewName.textContent = this.communityNameInput.value || 'Skayologie';
-            this.previewName1.textContent = communityNameInput.value || 'Skayologie';
+            this.previewName1.textContent = this.communityNameInput.value || 'Skayologie';
         });
 
 // Update character counter and preview for description
         this.descriptionInput.addEventListener('input', () => {
             const length = this.descriptionInput.value.length;
             this.descCounter.textContent = length;
+            console.log(this.previewDescription)
             this.previewDescription.textContent = this.descriptionInput.value || 'Hello this is community.blade.php for you';
             this.previewDescription1.textContent = this.descriptionInput.value || 'Hello this is community.blade.php for you';
         });
