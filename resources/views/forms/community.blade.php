@@ -29,7 +29,7 @@
                     <div class="mb-4">
                         <label class="block text-sm font-medium text-gray-700">Nom de la communauté <span class="text-red-500">*</span></label>
                         <div class="relative">
-                            <input type="text" id="communityName" placeholder="Community Name"
+                            <input type="text" name="name" id="communityName" placeholder="Community Name"
                                    class="mt-1 block w-full border-none  rounded-md  py-2 px-3 focus:outline-none  bg-gray-200"
                                    maxlength="50">
                             <div class="absolute right-2 bottom-2 text-xs text-gray-400" id="nameCounter">11</div>
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="radio" name="privacy" id="public" checked class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-full">
+                            <input type="radio" value="public" name="privacy" id="public" checked class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-full">
                         </div>
                     </div>
 
@@ -188,7 +188,7 @@
                             </div>
                         </div>
                         <div>
-                            <input type="radio" name="privacy" id="private" class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-full">
+                            <input type="radio" value="private" name="privacy" id="private" class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-full">
                         </div>
                     </div>
                 </div>

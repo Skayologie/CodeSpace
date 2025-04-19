@@ -1,4 +1,5 @@
 import Render from "./RenderPage";
+import Toaster from "./Toaster";
 
 
 export default class Community {
@@ -22,6 +23,7 @@ export default class Community {
         this.bannerPreview = document.getElementById('bannerPreview');
         this.iconPreview = document.getElementById('iconPreview');
         this.ThemesCommunity = document.getElementById("ThemesCommunity");
+        this.FinishCommunity = document.getElementById('FinishedBtn');
         this.ChoosedThemes = [];
         this.CreateCommunity();
     }
@@ -95,6 +97,37 @@ export default class Community {
             }
         });
 
+        this.FinishCommunity.addEventListener('click',()=>{
+            let CommunityType = document.querySelector('[name="privacy"]:checked');
+            const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+            let CommunityData = {
+                name : document.getElementById('communityName').value,
+                description : this.previewDescription.innerText,
+                banner      : "hello",
+                icon        : "hello",
+                type                 : CommunityType.value,
+                CommunityThemes      : this.ChoosedThemes,
+            };
+            $.ajax({
+                url : "/Community",
+                method : "POST",
+                data : JSON.stringify(CommunityData),
+                headers: {
+                    'X-CSRF-TOKEN': token
+                },
+                contentType: 'application/json',
+                success : (result)=>{
+                    let toast = new Toaster();
+                    toast.show(result.message,"success")
+                    document.getElementById('ContainForm').innerHTML = "";
+                },
+                error : (error)=>{
+                    let toast = new Toaster();
+                    toast.show(error.responseJSON.message,"error")
+                }
+            })
+        })
 // Icon upload handling
         this.uploadIconBtn.addEventListener('click', () => {
             this.iconFileInput.click();

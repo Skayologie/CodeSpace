@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Elegant Dashboard | Dashboard</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('storage/css/style.min.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -20,7 +21,7 @@
 </head>
 
 <body class="bg-white">
-<div id="toast" class="fixed z-50 right-0 p-[60px]">
+<div id="toast" class="fixed z-[121] right-0 p-[80px]">
 
 </div>
 <div class="fixed z-[120]" id="ContainForm">
