@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('communities', function (Blueprint $table) {
             $table->id();
+            $table->string("name");
+            $table->string("description");
+            $table->string("banner");
+            $table->string("icon");
+            $table->enum("type",["public","private"]);
             $table->timestamps();
         });
     }

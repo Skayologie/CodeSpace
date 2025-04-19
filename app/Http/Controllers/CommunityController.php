@@ -33,7 +33,17 @@ class CommunityController extends Controller
      */
     public function store(StoreCommunityRequest $request)
     {
-        //
+        try {
+            $data = $request->validated();
+            Community::create($data);
+            return response()->json([
+                "message"=>"Your Community Has Been Created Successfully !"
+            ],200);
+        }catch (\Exception $e){
+            return response()->json([
+                "message"=>$e->getMessage()
+            ],200);
+        }
     }
 
     /**
