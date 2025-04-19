@@ -103,7 +103,7 @@ export default class Community {
 
             let CommunityData = {
                 name : document.getElementById('communityName').value,
-                description : this.previewDescription.innerText,
+                description : document.getElementById('description').value,
                 banner      : "hello",
                 icon        : "hello",
                 type                 : CommunityType.value,
