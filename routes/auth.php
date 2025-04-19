@@ -20,6 +20,9 @@ Route::middleware("notAuth")->group(function () {
 
     Route::resource('/forget_password', PasswordController::class);
 
+    Route::get('/verifyEmail/CheckToken/{token}', [AuthController::class, "CheckToken"])
+        ->name("Password.checkToken");
+
     Route::get('/forgetPassword/CheckToken', [PasswordController::class, "CheckToken"])
         ->name("Password.checkToken");
 
