@@ -131,11 +131,12 @@
 
             <!-- Theme Selection Counter -->
             <div class="mb-4">
-                <h3 class="font-medium text-gray-700">Thèmes 0/3</h3>
+                <h3 class="font-medium text-gray-700">Thèmes <span id="counterHowThemeThere">0</span>/3</h3>
+                <div id="choosedThemes" class="flex gap-2 p-3"></div>
             </div>
 
             <!-- Theme Categories -->
-            <div class="space-y-6 max-h-96 overflow-y-auto pr-2">
+            <div id="ThemesCommunity" class="space-y-6 max-h-96 overflow-y-auto pr-2">
                 <!-- News & Politics Category -->
                 <div class="theme-category">
                     <div class="flex items-center mb-2">
