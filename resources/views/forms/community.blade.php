@@ -151,7 +151,60 @@
 
         </div>
         <div id="4" class="hidden p-4">
-            Another step
+            <div class="bg-white rounded-lg shadow-md w-full max-w-2xl">
+                <!-- Privacy Options -->
+                <div class="p-4">
+                    <!-- Public Option -->
+                    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-900">Public</h3>
+                                <p class="text-sm text-gray-500">Tout le monde peut voir cette communauté et y publier ou commenter du contenu</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="radio" name="privacy" id="public" checked class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-full">
+                        </div>
+                    </div>
+
+
+                    <!-- Private Option -->
+                    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+                        <div class="flex items-start gap-3">
+                            <div class="mt-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-medium text-gray-900">Privée</h3>
+                                <p class="text-sm text-gray-500">Seuls les membres approuvés peuvent voir et contribuer</p>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="radio" name="privacy" id="private" class="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded-full">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer with Terms and Buttons -->
+                <div class="border-t border-gray-200 p-4">
+                    <p class="text-sm text-gray-600 mb-4">
+                        En continuant, tu acceptes notre
+                        <a href="#" class="text-blue-600 font-medium">Code de conduite de la modération</a>
+                        et reconnais avoir compris notre
+                        <a href="#" class="text-blue-600 font-medium">Règles de CodeSpace</a>
+                    </p>
+
+
+                </div>
+            </div>
         </div>
         <!-- Modal Footer -->
         <div class="bg-gray-50 px-4 py-3 flex justify-between space-x-2">
@@ -163,13 +216,21 @@
                 <span id="step4" class="h-2 w-2 rounded-full bg-gray-300 mx-1"></span>
             </div>
             <div>
-                <button data-progress="0" id="backBtn" class="bg-white border border-gray-300 rounded-md shadow-sm px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <button data-progress="0" id="backBtn" class="px-4 py-2 bg-gray-100 text-gray-900 font-medium rounded-full hover:bg-gray-200">
                     retour
                 </button>
                 <input id="Currentplace" value="1" type="hidden" >
-                <button data-progress="2" id="nextBtn" class="bg-blue-600 border border-transparent rounded-md shadow-sm px-4 py-2 text-sm font-medium text-white hover:bg-blue-700">
+                <button data-progress="2" id="nextBtn" class="px-4 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700">
                     Suivant
                 </button>
+                <button id="FinishedBtn" class="hidden px-4 py-2 bg-blue-600 text-white font-medium rounded-full hover:bg-blue-700">
+                    Finish !
+                </button>
+
+
+
+
+
             </div>
         </div>
         <!-- Hidden file inputs -->
