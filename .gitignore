@@ -21,3 +21,4 @@ yarn-error.log
 /.zed
 /public/css
 /public/js
+/public/mix-manifest.json
