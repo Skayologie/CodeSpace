@@ -9,4 +9,11 @@ class Community extends Model
 {
     /** @use HasFactory<\Database\Factories\CommunityFactory> */
     use HasFactory;
+    protected $fillable = [
+        "name",
+        "description",
+        "banner",
+        "icon",
+        "type"
+    ];
 }
