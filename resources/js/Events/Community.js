@@ -43,6 +43,14 @@ export default class Community {
         ).join(""))
         let counter = document.getElementById("counterHowThemeThere");
         setTimeout(()=>{
+            const privacyOptions = document.querySelectorAll('input[name="privacy"]');
+
+            privacyOptions.forEach(option => {
+                option.addEventListener('change', function() {
+                    console.log('Privacy option selected:', this.id);
+                });
+            });
+
             document.querySelectorAll('.buttonSubThemes').forEach((button)=>{
                 button.addEventListener("click",(e)=>{
                     if (!this.ChoosedThemes.includes(e.target.value) && this.ChoosedThemes.length < 3){
@@ -151,13 +159,25 @@ export default class Community {
         });
 
 
-
 // Next button functionality (placeholder)
         document.getElementById('nextBtn').addEventListener('click', () => {
             let currentplace = document.getElementById("Currentplace");
             let next = document.getElementById('nextBtn');
             let back = document.getElementById("backBtn");
+            let FinishedBtn = document.getElementById('FinishedBtn');
 
+            if (currentplace.value === "0"){
+                back.classList.add("hidden")
+            }else{
+                back.classList.remove("hidden")
+
+            }
+
+
+            if (currentplace.value === "3"){
+                FinishedBtn.classList.remove("hidden")
+                next.classList.add("hidden")
+            }
 
             let currentSection = document.getElementById(currentplace.value);
             let nextSection    = document.getElementById(next.dataset.progress);
@@ -182,6 +202,12 @@ export default class Community {
             let currentplace = document.getElementById("Currentplace");
             let next = document.getElementById('nextBtn');
             let back = document.getElementById("backBtn");
+            let FinishedBtn = document.getElementById('FinishedBtn');
+
+            if (currentplace.value !== "3"){
+                FinishedBtn.classList.add("hidden")
+                next.classList.remove("hidden")
+            }
 
             let currentSection = document.getElementById(currentplace.value);
             let backSection    = document.getElementById(back.dataset.progress);
