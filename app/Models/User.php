@@ -19,7 +19,9 @@ class User extends Model
         "github",
         "linkedin",
         "twitter",
-        "remember_token"
+        "remember_token",
+        "token_verification",
+        "email_verified_at"
     ];
 
     public function roles(){
