@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Community;
 use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
+use App\Models\CommunityTheme;
 use Illuminate\Support\Facades\File;
 
 class CommunityController extends Controller
@@ -35,7 +36,14 @@ class CommunityController extends Controller
     {
         try {
             $data = $request->validated();
-            Community::create($data);
+            $CommunityThemes = $request->input()["CommunityThemes"];
+            $community = Community::insertGetId($data);
+            foreach ($CommunityThemes as $item){
+                CommunityTheme::create([
+                    "communityID"=>$community,
+                    "ThemeID"=>$item
+                ]);
+            }
             return response()->json([
                 "message"=>"Your Community Has Been Created Successfully !"
             ],200);
