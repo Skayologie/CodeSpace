@@ -8,6 +8,7 @@ import Dashboard from "./Dashboard/index";
 import Render from "./Events/RenderPage";
 import RenderForms from "./Events/RenderForms";
 import StoreAJAX from "./Events/StoreAJAX";
+import Explore from "./Events/Explore";
 
 
 const path = window.location.pathname;
@@ -17,6 +18,7 @@ if (path !== "/Dashboard"){
         new Header();
         let view = new Render()
         let form = new RenderForms()
+        new Explore();
         form.render("/Community/create","openModalBtn");
         view.render("Post","CreatePost","UserArea")
     });
