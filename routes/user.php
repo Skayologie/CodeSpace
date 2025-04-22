@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,5 +19,15 @@ Route::middleware(["auth", "role:user"])->group(function () {
     Route::get('/AllThemes', [ThemeController::class,"getAllThemes"]);
     Route::get('/Explore/Communities',[ExploreController::class,"getCommunities"]);
     Route::get("Tag/Search/{text}",[TagController::class,"tag_search"]);
+
+    Route::get("Community/join/{communityID}/{userID}",[CommunityController::class,"rejoindre"]);
+
+    Route::get("ManageCommunity/inviteModo",[CommunityController::class,"inviteForm"]);
+    Route::get("ManageCommunity/SendInviteToCommunity/{CommunityID}/{UserID}/{role}",[CommunityController::class,"SendInvite"]);
+    Route::get("ManageCommunity/CheckInvitation/{CommunityID}/{UserID}/{role}",[CommunityController::class,"CheckInvite"]);
+
+    Route::get("Users/Search/{nameQuery}",[UserController::class,"SearchUsers"]);
+
+
 });
 Route::get('/Explore/Communities/paginate',[ExploreController::class,"paginationThemes"]);
