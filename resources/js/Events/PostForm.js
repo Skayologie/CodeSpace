@@ -26,8 +26,8 @@ export default class PostForm {
             const searchBox = document.getElementById('tag-search-box');
 
             if (inputValue === "") {
-                searchBox.innerHTML = ""; // Clear the search box
-                return; // Stop execution to prevent an unnecessary API call
+                searchBox.innerHTML = "";
+                return;
             }
             this.getData(inputValue);
         });
@@ -94,7 +94,7 @@ export default class PostForm {
         this.changeURL(selectedContent.id)
     }
     changeURL(newURL) {
-        history.replaceState(null, "New Page", "/Home?Type="+newURL);
+        history.replaceState(null, "New Page", "/Post?Type="+newURL);
     }
     addTag(tagText,id) {
         if (tagText.trim() === "" || this.tags.includes(tagText)) return;

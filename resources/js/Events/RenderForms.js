@@ -1,5 +1,6 @@
 import StoreAJAX from "./StoreAJAX";
 import Community from "./Community";
+import inviteModo from "./InviteModo";
 
 export default class RenderForms {
 
@@ -92,6 +93,9 @@ export default class RenderForms {
                     }
                     else if (ActionIdBtn === "openModalBtn"){
                         new Community();
+                    }else if (ActionIdBtn === "inviteModo"){
+                        (new inviteModo()).OnchangeFunc();
+
                     }
 
                 }

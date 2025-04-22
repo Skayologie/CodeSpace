@@ -108,6 +108,7 @@ export default class Community {
                 icon        : "hello",
                 type                 : CommunityType.value,
                 CommunityThemes      : this.ChoosedThemes,
+                community_rules      : 'rules',
             };
             $.ajax({
                 url : "/Community",
