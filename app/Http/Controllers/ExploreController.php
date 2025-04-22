@@ -12,8 +12,8 @@ class ExploreController extends Controller
     //
     public function getCommunities(){
         return view("User.Pages.Explore",[
-            "Themes"=>Theme::where("parent","=",null)->paginate(5),
-            "Communities"=>Community::all(),
+            "Themes"=>Theme::where("parent","=",null)->paginate(6),
+            "Communities"=>Community::withCount('members')->orderByDesc('members_count')->get(),
         ]);
     }
     public function paginationThemes(){

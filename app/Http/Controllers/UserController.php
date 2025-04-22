@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Community;
 use App\Models\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
@@ -63,4 +64,17 @@ class UserController extends Controller
     {
         //
     }
+    public function SearchUsers($nameQuery){
+        try {
+            $result = User::where('username', 'like', "%".$nameQuery."%")->get();;
+            return response()->json($result);
+
+        }catch (\Exception $e){
+            return response()->json([
+                "message"=>$e->getMessage()
+            ]);
+
+        }
+    }
+
 }

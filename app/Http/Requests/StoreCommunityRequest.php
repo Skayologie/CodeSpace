@@ -27,6 +27,7 @@ class StoreCommunityRequest extends FormRequest
             'banner' => 'nullable|string|max:255',
             'icon' => 'nullable|string|max:255',
             'type' => 'required|string|in:public,private',
+            'community_rules' => 'nullable',
         ];
     }
 }
