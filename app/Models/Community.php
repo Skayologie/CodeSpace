@@ -14,6 +14,20 @@ class Community extends Model
         "description",
         "banner",
         "icon",
-        "type"
+        "type",
+        "community_rules",
+        "status"
     ];
+
+
+    public function themes()
+    {
+        return $this->belongsToMany(Theme::class, 'community_theme', 'communityID', 'ThemeID')
+            ->using(CommunityTheme::class);
+    }
+
+    public function members()
+    {
+        return $this->belongsToMany(User::class, 'community_members', "communityID",'userId');
+    }
 }

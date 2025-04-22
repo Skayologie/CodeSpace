@@ -14,6 +14,10 @@ class Theme extends Model
         "name",
         "parent",
     ];
+    public function communities()
+    {
+        return $this->belongsToMany(Community::class, 'community_theme', 'ThemeID', 'communityID');
+    }
 
     public function subthemes()
     {

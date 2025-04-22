@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class CommunityTheme extends Model
+class CommunityTheme extends Pivot
 {
     //
     protected $table = "community_theme";
