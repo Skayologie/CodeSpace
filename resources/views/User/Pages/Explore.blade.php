@@ -26,14 +26,20 @@
                                 <div class="w-10 h-10 rounded-full bg-blue-500 overflow-hidden mr-3">
                                     <img src="/api/placeholder/40/40" alt="Vancouver" class="w-full h-full object-cover">
                                 </div>
-                                <div>
-                                    <a href="#"><h3 class="font-medium">{{$community->name}}</h3></a>
-                                    <p class="text-sm text-gray-500">565 k membres</p>
+
+                                <div >
+                                    <a href="#"><h3 id="community{{$community->id}}" class="communities" data-value="{{$community->id}}" class="font-medium">{{$community->name}} @if($community->type === "private") <i class="text-gray-600/90 fa-solid fa-lock"></i> @else <i class="text-gray-600/90 fa-solid fa-earth-americas"></i> @endif </h3></a>
+                                    <p class="text-sm text-gray-500">{{count($community->members)}} membres</p>
                                 </div>
                             </div>
-                            <button class="px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Rejoindre</button>
+                            @if(optional($community->members->first())->id != session()->get("user")->id)
+                                <button class="px-4 py-1 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">Rejoindre</button>
+                            @else
+                                <button class="px-4 py-1 bg-white text-black rounded-full border border-black transition">Member</button>
+                            @endif
                         </div>
                         <p class="text-sm text-gray-700">{{$community->description}}</p>
+
                     </div>
                 </div>
             @endforeach

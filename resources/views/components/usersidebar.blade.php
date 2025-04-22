@@ -24,7 +24,7 @@
             <i class="fas fa-home mr-3 w-5 text-center"></i>
             <span>Accueil</span>
         </a>
-        <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+        <a  id="populaires" href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
             <i class="fas fa-fire mr-3 w-5 text-center"></i>
             <span>Populaires</span>
         </a>
