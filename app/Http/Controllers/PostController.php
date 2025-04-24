@@ -22,7 +22,7 @@ class PostController extends Controller
     {
         //
         $Categories = Category::all();
-        return view("User.Pages.Post",[
+        return view("Post.index",[
             "Categories"=>$Categories
         ]);
     }
