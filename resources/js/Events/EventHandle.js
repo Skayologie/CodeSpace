@@ -1,16 +1,11 @@
-import inviteModo from "./InviteModo";
 
-class EventHandler {
+class EventHandle {
     constructor(ActionIdBtn) {
         this.init(ActionIdBtn);
     }
     init(ActionIdBtn){
         let btn = document.getElementById(ActionIdBtn);
-        btn.addEventListener("click", () => {
-            if (ActionIdBtn === "inviteModo"){
-                (new inviteModo()).OnchangeFunc();
-            }
-        })
+        alert("hello")
 
     }
 }
