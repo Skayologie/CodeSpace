@@ -19,6 +19,62 @@ export default class PostForm {
         this.init();
     }
     init(){
+        console.log(document.getElementById("searchCommunityResults"))
+        document.getElementById("InputSearchCommunity").addEventListener("keyup",(e)=>{
+            let nameQuery = e.target.value;
+            $.ajax({
+                url:`../../../../../../Communities/Search/${nameQuery}`,
+                method:"GET",
+                success : (result)=>{
+                    console.log(result)
+                    document.getElementById('searchCommunityResults').innerHTML = result.map((item)=> {
+                        return `
+                        <div id="${item.id}" class="CommunityResult flex items-center p-3 hover:bg-gray-50 cursor-pointer border-b border-gray-100">
+                            <div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-500 text-white mr-3">🔵</div>
+                            <div class="flex flex-col">
+                              <span class="font-medium text-sm">r/${item.name}</span>
+                              <span class="text-gray-500 text-xs">${item.member_count} members </span>
+                            </div>
+                        </div>
+                        `
+                    }).join(" ")
+                    let CommunityResult = document.querySelectorAll(".CommunityResult");
+                    CommunityResult.forEach((element)=>{
+                        element.addEventListener("click",(e)=>{
+                            console.log(e)
+                            document.getElementById("SearchAreaMall").innerHTML = `
+                                <div id="" class="CommunityResult bg-gray-500 rounded-full flex items-center p-3 hover:bg-gray-600 cursor-pointer border-b border-gray-100">
+                                    <div class="w-8 h-8 rounded-full flex items-center justify-center bg-blue-500 text-white mr-3">🔵</div>
+                                    <div class="flex flex-col">
+                                      <span class="font-medium text-sm">r/dddddddddddd</span>
+                                      <span class="text-gray-500 text-xs">2 members </span>
+                                    </div>
+                                    <div id="removeCommunityButton" class="flex justify-end w-full p-2">
+                                         <i class="fa-solid fa-xmark"></i>
+                                    </div>
+                                </div>
+                                `
+                            document.getElementById('removeCommunityButton').addEventListener("click",()=>{
+                                document.getElementById("SearchAreaMall").innerHTML = `
+                                 <div class="relative">
+                                    <input id="InputSearchCommunity" type="text" placeholder="Search communities" class="w-full pl-8 pr-3 py-2 bg-gray-100 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-300">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 absolute left-2.5 top-2.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                    </svg>
+                                 </div>
+                                `
+                            });
+                            document.getElementById('searchCommunityResults').innerHTML = ''
+                        })
+                    })
+                },
+                error: (error) => {
+                    console.log(error)
+                }
+
+            });
+        })
+
 
         // change
         document.getElementById("tag-input").addEventListener("keyup", () => {
