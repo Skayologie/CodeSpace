@@ -24,11 +24,11 @@
             <i class="fas fa-home mr-3 w-5 text-center"></i>
             <span>Accueil</span>
         </a>
-        <a  id="populaires" href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+        <a  id="populaires"  class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
             <i class="fas fa-fire mr-3 w-5 text-center"></i>
             <span>Populaires</span>
         </a>
-        <a id="explorer" href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+        <a id="explorere" href="{{route('Explore.index')}}" href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
             <i class="fas fa-compass mr-3 w-5 text-center"></i>
             <span>Explorer</span>
         </a>
@@ -40,6 +40,7 @@
 
 
     @if($auth === "true")
+
         <!-- Divider -->
         <div class="border-t border-gray-200 my-2"></div>
 
@@ -67,31 +68,15 @@
                 <i class="fas fa-chevron-up section-icon"></i>
             </div>
             <div class="section-content" id="communities-content">
-                <button id="openModalBtn" class="flex items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <button id="CommunityButtonCreate" class="flex items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
                     <i class="fas fa-plus mr-3 w-5 text-center"></i>
                     <span>Créer une communauté</span>
                 </button>
 
                 <!-- Community Links -->
-                <div class="mt-1">
-                    <a href="#" class="flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
-                        <div class="flex items-center">
-                            <div class="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mr-3">
-                                <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" class="w-4 h-4" alt="Canada">
-                            </div>
-                            <span>r/canada</span>
-                        </div>
-                        <i class="far fa-star favorite-icon"></i>
-                    </a>
-                    <a href="#" class="flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
-                        <div class="flex items-center">
-                            <div class="w-5 h-5 rounded-full bg-green-800 flex items-center justify-center mr-3">
-                                <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" class="w-4 h-4" alt="Morocco">
-                            </div>
-                            <span>r/Morocco</span>
-                        </div>
-                        <i class="far fa-star favorite-icon"></i>
-                    </a>
+                <div id="CommunitiesDispo" class="mt-1">
+
+
                 </div>
             </div>
         </div>
