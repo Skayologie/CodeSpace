@@ -17,4 +17,7 @@ class CommunityMembers extends Pivot
     public function user(){
         return $this->hasOne(User::class,"id","userId");
     }
+    public function communities() {
+        return $this->belongsToMany(Community::class, 'Communities', 'userID', 'communityID');
+    }
 }
