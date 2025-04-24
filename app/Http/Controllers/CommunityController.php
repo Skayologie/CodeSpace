@@ -9,6 +9,7 @@ use App\Http\Requests\StoreCommunityRequest;
 use App\Http\Requests\UpdateCommunityRequest;
 use App\Models\CommunityTheme;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
@@ -82,11 +83,12 @@ class CommunityController extends Controller
                 $hasReponsable = false;
             }
         }
-        return view("User.Pages.CommunitySinglePage",[
+        return view("Community.index",[
             "Community"=>$community,
             "responsables"=>$responsables,
-            "hasReponsable"=>$hasReponsable
+            "hasReponsable"=>$hasReponsable,
         ]);
+
     }
 
     /**
@@ -113,19 +115,30 @@ class CommunityController extends Controller
         //
     }
 
-    public function rejoindre($communityID,$userID){
+    public function rejoindre($communityID){
         try {
+            $userID = \session()->get("user")->id;
             $typeCommunity = (Community::findOrFail($communityID))->type;
             if ($typeCommunity === "public"){
                 CommunityMembers::create([
                     "communityID"=>$communityID,
                     "userId"=>$userID,
+                    "role"=>"user",
+                    'status'=>"regularUser"
                 ]);
                 return response()->json([
-                    "message"=>"You are a member in this community community"
+                    "message"=>"You are a member in this community !"
                 ]);
-            }else{
-
+            }else if ($typeCommunity === "private"){
+                CommunityMembers::create([
+                    "communityID"=>$communityID,
+                    "userId"=>$userID,
+                    "role"=>"user",
+                    'status'=>"pending"
+                ]);
+                return response()->json([
+                    "message"=>"Your request has been sent successfully to the administrator !"
+                ]);
             }
 
         }catch(\Exception $e){
@@ -160,7 +173,7 @@ class CommunityController extends Controller
                     ]);
                 }else{
                     return response()->json([
-                        "message"=>"You don't have right ro send invite"
+                        "message"=>$localUserID
                     ]);
                 }
             }
@@ -187,6 +200,35 @@ class CommunityController extends Controller
                 ]);
             }
         }catch (\Exception $e){
+            return response()->json([
+                "message"=>$e->getMessage()
+            ]);
+        }
+    }
+    public function SearchCommunity($nameQuery){
+        try {
+            $localUserId = \session()->get('user')->id;
+            $result = DB::table('communities')
+                ->leftJoin('community_members', 'communities.id', '=', 'community_members.communityID')
+                ->where('communities.name', 'like', "%{$nameQuery}%")
+                ->where('community_members.userId',  $localUserId)
+                ->select('communities.id', 'communities.name', DB::raw('COUNT(community_members.id) as member_count'))
+                ->groupBy('communities.id', 'communities.name')
+                ->get();
+            return response()->json($result);
+
+        }catch (\Exception $e){
+            return response()->json([
+                "message"=>$e->getMessage()
+            ]);
+        }
+    }
+    public function listCommunityDispo(){
+        try {
+            $userID = \session("user")->id;
+            $communities = CommunityMembers::join('communities', 'community_members.communityID', '=', 'communities.id')->where("userId",$userID)->where("status","regularUser")->get();
+            return response()->json($communities);
+        }catch(\Exception $e){
             return response()->json([
                 "message"=>$e->getMessage()
             ]);
