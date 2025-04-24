@@ -7,15 +7,12 @@ export default class inviteModo{
         this.cancelBtn = document.getElementById('cancelBtn');
         this.modalOverlay = document.getElementById('modalOverlay');
         this.SearchUserInput = document.getElementById("SearchUserInput");
-        this.openModalBtn.addEventListener('click', () => {
-        this.modalOverlay.classList.remove('hidden');
 
-        });
 
         [this.closeBtn].forEach(btn => {
             btn.addEventListener('click', () => {
                 this.modalOverlay.classList.add('hidden');
-            });
+            }   );
         });
 
 // Close modal when clicking outside
@@ -31,7 +28,7 @@ export default class inviteModo{
 
     searchUser(queryName){
         $.ajax({
-            url:`Users/Search/${queryName}`,
+            url:`../../../../../../../Users/Search/${queryName}`,
             method:"GET",
             success:(result)=>{
                 document.getElementById("UsersInvite").innerHTML = result.map(item => {
@@ -120,21 +117,20 @@ export default class inviteModo{
                         "UserID":UserID,
                         "role":role,
                     }
-                    console.log(C.target.getAttribute("data-value"))
                     document.getElementById("LoadingOne").classList.remove("hidden");
-                    $.ajax({
-                        url : `ManageCommunity/SendInviteToCommunity/${CommunityID}/${UserID}/${role}`,
-                        method : "GET",
-                        success : (result)=>{
-                            document.getElementById("LoadingOne").classList.add("hidden");
-                            document.getElementById("default-modal").classList.add("hidden");
-                            (new Toaster()).show(result.message,"success")
-                            console.log(result)
-                        },
-                        error : (error)=>{
-                            console.log(error)
-                        }
-                    })
+                    // $.ajax({
+                    //     url : `ManageCommunity/SendInviteToCommunity/${CommunityID}/${UserID}/${role}`,
+                    //     method : "GET",
+                    //     success : (result)=>{
+                    //         document.getElementById("LoadingOne").classList.add("hidden");
+                    //         document.getElementById("default-modal").classList.add("hidden");
+                    //         (new Toaster()).show(result.message,"success")
+                    //         console.log(result)
+                    //     },
+                    //     error : (error)=>{
+                    //         console.log(error)
+                    //     }
+                    // })
                 })
             });
         });
