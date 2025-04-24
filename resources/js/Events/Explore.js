@@ -4,12 +4,9 @@ import RenderForms from "./RenderForms";
 export default class Explore{
     constructor(){
         this.view = new Render();
-        this.showExploreCommunities()
         this.showSpecCommunity()
     }
-    showExploreCommunities(){
-        this.view.render("/Explore/Communities","explorer","UserArea")
-    }
+
     showSpecCommunity(){
         document.getElementById("explorer").addEventListener('click',()=>{
             setTimeout(()=>{
