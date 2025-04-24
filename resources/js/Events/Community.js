@@ -4,10 +4,9 @@ import Toaster from "./Toaster";
 
 export default class Community {
     constructor() {
-        this.openModalBtn = document.getElementById('openModalBtn');
         this.closeBtn = document.getElementById('closeBtn');
         this.cancelBtn = document.getElementById('cancelBtn');
-        this.modalOverlay = document.getElementById('modalOverlay');
+        this.modalOverlay = document.getElementById('CommunityOverlay');
         this.communityNameInput = document.getElementById('communityName');
         this.descriptionInput = document.getElementById('description');
         this.nameCounter = document.getElementById('nameCounter');
@@ -155,11 +154,6 @@ export default class Community {
 
 
 // Event Listeners
-        this.openModalBtn.addEventListener('click', () => {
-            this.modalOverlay.classList.remove('hidden');
-
-        });
-
         [this.closeBtn].forEach(btn => {
             btn.addEventListener('click', () => {
                 this.modalOverlay.classList.add('hidden');
