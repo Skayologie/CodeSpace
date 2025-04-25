@@ -57,9 +57,17 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Post $post)
+    public function show($username,$postId)
     {
         //
+        try {
+            $posts = Post::all();
+            return view("Post.SinglePost",[
+                "posts"=>$posts
+            ]);
+        }catch(\Exception $e){
+
+        }
     }
 
     /**
