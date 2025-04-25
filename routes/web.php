@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 require base_path('routes/auth.php');
@@ -15,7 +16,10 @@ Route::get('/Home', function () {
     if (session()->get("role") === "admin") {
         return redirect()->to(route("admin.Dashboard"));
     }
-    return view('Homepage.index');
+    $posts = Post::orderBy('created_at', 'desc')->get();
+    return view("Homepage.index",[
+        "posts"=>$posts
+    ]);
 })->name('user.Homepage');
 
 Route::get("/logout", [AuthController::class, "logout"])
