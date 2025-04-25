@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class StorePostRequest extends FormRequest
 {
@@ -19,10 +20,10 @@ class StorePostRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
+    public function rules(Request $request): array
     {
-        $param = $_GET["Type"];
-        if ($param === "content-texte"){
+        $param = $request->query('Type');
+        if ($param === "texte"){
             return [
                 //
                 "title"=>"required|min:20|max:300",
@@ -31,6 +32,8 @@ class StorePostRequest extends FormRequest
                 "allTags"=>"required"
             ];
         }
+
+        return [];
     }
     public function messages()
     {

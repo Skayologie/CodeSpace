@@ -17,7 +17,7 @@
 
 
 <!-- Sidebar -->
-<div class="fixed pb-[100px] w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
+<div class="fixed z-[100] pb-[100px] w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
     <!-- Navigation Section -->
     <nav class="px-3 py-2">
         <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md bg-gray-100 text-black">

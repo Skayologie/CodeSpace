@@ -36,10 +36,9 @@
                         {!! $post->content !!}
                     </p>
 x
-                    @if($post->multimedia === null)
-                        <!-- Post image -->
-                        <div class="rounded-md overflow-hidden mb-4">
-                            <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-rRbmp8M3FQUBRI3BPqu55zs5LixzPA.png" alt="Front door with No Solicitors sign and bucket" class="w-full object-cover" />
+                    @if($post->multimedia != null)
+                        <div class="rounded-md overflow-hidden mb-4 max-h-[400px]">
+                            <img src="{{$post->multimedia}}" alt="Front door with No Solicitors sign and bucket" class=" object-cover" />
                         </div>
                     @endif
 

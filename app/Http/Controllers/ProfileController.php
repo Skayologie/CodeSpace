@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +16,17 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function index(){
-        return view('profile.edit');
+    public function show($id){
+        try {
+            $User = User::findOrFail($id);
+            $Posts = Post::where("userId",$id)->orderBy("created_at","desc")->get();
+            return view("User.index",[
+                "User"=>$User,
+                "Posts"=>$Posts
+            ]);
+        }catch(\Exception $e){
+            return response()->json($e->getMessage());
+        }
     }
 
     public function edit(Request $request): View

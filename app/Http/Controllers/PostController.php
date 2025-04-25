@@ -44,11 +44,12 @@ class PostController extends Controller
         try {
             $data = $request->validated();
             $result = $this->postService->StoreService($data);
-            if ($result){
-                return redirect()->to(route("/"))->with("success","Post has been created successfully .");
-            }else{
-                return redirect()->to(route("Post.index"))->with("error","Failed , The Post hasn't created , Try again .");
-            }
+//            if ($result){
+//                return redirect()->to(route("/"))->with("success","Post has been created successfully .");
+//            }else{
+//                return redirect()->to(route("Post.index"))->with("error","Failed , The Post hasn't created , Try again .");
+//            }
+            dd($data);
         }catch(\Exception $e){
             return $e->getMessage();
         }
