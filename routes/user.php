@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\PostController;
@@ -14,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(["auth", "role:user"])->group(function () {
     Route::resource('/Post', PostController::class);
+
+    Route::resource('/Chat', ChatController::class);
+
     Route::resource('/Profile', ProfileController::class);
     Route::resource('/Community', CommunityController::class);
     Route::get('/Explore/Community/{id}', [CommunityController::class, 'show'])->name("Explore.community");
