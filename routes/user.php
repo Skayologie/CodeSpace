@@ -32,6 +32,7 @@ Route::middleware(["auth", "role:user"])->group(function () {
     Route::get("Users/Search/{nameQuery}",[UserController::class,"SearchUsers"]);
     Route::get("Communities/Search/{nameQuery}",[CommunityController::class,"SearchCommunity"]);
 
+    Route::get('/r/${username}/Post/${postId}', [PostController::class,"show"]);
 
 });
 Route::get('/Explore/Communities/paginate',[ExploreController::class,"paginationThemes"]);
