@@ -26,7 +26,10 @@
         "vite": "^6.0.11"
     },
     "dependencies": {
+        "@pusher/push-notifications-web": "^1.1.0",
         "jquery": "^3.7.1",
+        "laravel-echo": "^2.0.2",
+        "pusher-js": "^8.4.0",
         "sonner": "^2.0.3",
         "tailwindCSS": "npm:tailwindcss@^3.4.17"
     }

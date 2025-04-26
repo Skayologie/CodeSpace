@@ -5,8 +5,9 @@ import {
     CreateNewCommunityForm,
     CreatePostPage,
     JoinCommunity,
-    InviteModo
+    InviteModo,
 } from "./main/ui";
+import bootstrap from "./bootstrap/bootstrap";
 
 function main() {
     try { InviteModo(); } catch (e) { console.error(e); }
@@ -16,5 +17,7 @@ function main() {
     try { ProfileButtonHeader(); } catch (e) { console.error(e); }
     try { CreateNewCommunityForm(); } catch (e) { console.error(e); }
     try { CreatePostPage(); } catch (e) { console.error(e); }
+    try { bootstrap(); } catch (e) { console.error(e); }
 }
 document.addEventListener('DOMContentLoaded', main);
+

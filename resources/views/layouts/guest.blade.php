@@ -282,6 +282,7 @@
 <!-- Main App Js Script -->
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script src="{{ asset('js/main.js') }}"></script>
+<script src="https://js.pusher.com/beams/2.1.0/push-notifications-cdn.js"></script>
 
 </body>
 
