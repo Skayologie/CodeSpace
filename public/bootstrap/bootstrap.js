@@ -6134,17 +6134,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function bootstrap() {
-  window.Pusher = (pusher_js__WEBPACK_IMPORTED_MODULE_1___default());
-  window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
-    broadcaster: 'pusher',
-    key: /* unsupported import.meta.env.VITE_PUSHER_APP_KEY */ undefined.VITE_PUSHER_APP_KEY,
-    cluster: /* unsupported import.meta.env.VITE_PUSHER_APP_CLUSTER */ undefined.VITE_PUSHER_APP_CLUSTER,
-    forceTLS: true
-  });
-  laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"].channel('chat').listen('MessageSent', function (e) {
-    console.log("".concat(e.user.name, ": ").concat(e.message));
-    // Update chat UI
-  });
+  // window.Pusher = Pusher;
+  //
+  // window.Echo = new Echo({
+  //     broadcaster: 'pusher',
+  //     key: import.meta.env.VITE_PUSHER_APP_KEY,
+  //     cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+  //     forceTLS: true
+  // });
+  //
+  // Echo.channel('chat')
+  //     .listen('MessageSent', (e) => {
+  //         console.log(`${e.user.name}: ${e.message}`);
+  //         // Update chat UI
+  //     });
 }
 })();
 

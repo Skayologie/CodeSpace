@@ -1,6 +1,8 @@
 import Community from "../Events/Community";
 import PostForm from "../Events/PostForm";
 import Toaster from "../Events/Toaster";
+import Render from "../Events/RenderPage";
+import Echo from "laravel-echo";
 
 export function getMyCommunitiesSideBar() {
     $.ajax({
@@ -731,3 +733,61 @@ export function InviteModo() {
 
 }
 
+
+export function sentMessage() {
+    document.getElementById("SentThisMessage").addEventListener('click', () => {
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+        const receiver_id = window.location.pathname.split('/').pop();
+        const messageContent = document.getElementById("MessageInput").value;
+
+        $.ajax({
+            url: `../../Message/${receiver_id}`,
+            method: "POST",
+            data: {
+                content: messageContent,
+                receiver_id: receiver_id,
+                _token: csrfToken
+            },
+            success: (response) => {
+                console.log(response);
+
+                let senderMessage = `
+                    <div class="flex mb-4 justify-end">
+                        <div class="max-w-[75%] text-right">
+                            <div class="bg-violet-500 p-3 rounded-lg rounded-tr-none">
+                                <p class="text-sm text-white">${messageContent}</p>
+                            </div>
+                            <p class="text-xs text-gray-500">Just now</p>
+                        </div>
+                    </div>
+                `;
+                $("#messageArea").append(senderMessage);
+                document.getElementById("MessageInput").value = "";
+                scrollToBottom()
+
+            },
+            error: (error) => {
+                console.log(error.responseJSON);
+            }
+        });
+    });
+    const receiver_id = window.location.pathname.split('/').pop();
+    const userId = document.getElementById('MyId').value;
+
+}
+function scrollToBottom() {
+    let chat = document.getElementById('messageArea');
+    chat.scrollTop = chat.scrollHeight;
+}
+scrollToBottom()
+
+export function ChangeConversation(){
+    document.querySelectorAll('.Conversation').forEach((CNV)=>{
+            let view = new Render();
+            CNV.addEventListener("click",()=>{
+                document.getElementById("IndexChatAlert").classList.add("hidden")
+                try { sentMessage(); } catch (e) { console.error(e); }
+            })
+            view.render("Chat/"+CNV.id,CNV.id,"ChatArea")
+    })
+}

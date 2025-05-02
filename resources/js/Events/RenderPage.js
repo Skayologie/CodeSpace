@@ -1,5 +1,6 @@
 import PostForm from "./PostForm";
 import Form from "./Form";
+import {sentMessage} from "../main/ui";
 
 export default class Render {
     render(endpoint , ActionIdBtn , renderPlace){
@@ -16,6 +17,9 @@ export default class Render {
 
                     if (endpoint === "Post"){
                         new PostForm();
+                    }
+                    if(renderPlace === "ChatArea"){
+                        try { sentMessage(); } catch (e) { console.error(e); }
                     }
                 }
             });
