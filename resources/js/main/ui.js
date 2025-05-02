@@ -777,7 +777,9 @@ export function sentMessage() {
 }
 function scrollToBottom() {
     let chat = document.getElementById('messageArea');
-    chat.scrollTop = chat.scrollHeight;
+    if (chat){
+        chat.scrollTop = chat.scrollHeight;
+    }
 }
 scrollToBottom()
 
