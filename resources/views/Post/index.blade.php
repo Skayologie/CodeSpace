@@ -9,18 +9,11 @@
                     </svg>
                     Créer une publication
                 </h1>
-                <a href="#" class="flex items-center text-gray-600 hover:text-orange-500 transition-colors group">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1.5 text-gray-400 group-hover:text-orange-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                        <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
-                    </svg>
-                    Brouillons
-                </a>
             </div>
 
             <!-- Main Form -->
             <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 mb-8">
-                    <form id="PostForm">
+                <form id="PostForm">
 
 
                     <!-- Community Selection -->
@@ -238,13 +231,7 @@
 
                     <!-- Form Actions -->
                     <div class="flex flex-wrap justify-end gap-3 mt-8">
-                        <button type="button" class="px-6 py-2.5 bg-gray-100 text-gray-700 rounded-full text-sm font-medium hover:bg-gray-200 transition-colors flex items-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                                <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd" />
-                            </svg>
-                            Enregistrer le brouillon
-                        </button>
+
                         <button
                             type="button"
                             id="btnSubmit"

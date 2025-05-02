@@ -3,6 +3,7 @@
 namespace App\Repository\Eloquent;
 
 use App\Models\Post;
+use http\Client\Request;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
 
@@ -29,9 +30,10 @@ class PostRepository
     }
     public function StorePost($data){
         try {
+            $typeParam =
             $type = ($_GET["Type"] === "content-texte") ? "text" :
-                (($_GET["Type"] === "content-image") ? "image" :
-                    (($_GET["Type"] === "content-link") ? "lien" : "null"));
+                    (($_GET["Type"] === "content-images") ? "image" :
+                    (($_GET["Type"] === "content-lien") ? "lien" : "null"));
             $post = Post::create([
                 "userId"=>session()->get("user")->id,
                 "title"=>$data["title"],

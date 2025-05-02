@@ -2,9 +2,6 @@ export default class Form {
 
     constructor() {
 
-        this.form = document.querySelector("#PostForm");
-        if (!this.form) throw new Error("Form not found!this is");
-
         // Select elements
         this.titleInput = document.querySelector("[name='title']");
         this.titleError = document.querySelector("#titleError");
@@ -25,16 +22,12 @@ export default class Form {
 
 
     init() {
-        this.titleInput.addEventListener("input", () => this.handleTitleValidation());
-        // this.description.addEventListener("input", () => this.handleDescriptionUpdate());
         this.btnSubmit.addEventListener('click', (event) => this.validation(event));
     }
 
 
     validation(event){
-        event.preventDefault(); // Prevent default form submission
         const quill = document.querySelector(".ql-editor").innerHTML
-        console.log(quill)
         document.getElementById('quill-content').value = quill;
 
         let isValid = true; // Assume the form is valid initially
@@ -77,11 +70,6 @@ export default class Form {
             this.hideError("contentError");
         }
 
-
-        // Submit form only if all fields are valid
-        if (isValid) {
-            document.querySelector('form').submit();
-        }
     }
 
     showError(id) {
@@ -100,77 +88,4 @@ export default class Form {
     }
 
 
-    handleDescriptionInit() {
-        if (this.description.value.trim().length > 0) {
-            this.descriptionCheck.classList.remove("hidden");
-        }
-    }
-    // Title validation and character counter
-    handleTitleValidation() {
-        const remainingChars = this.titleInput.maxLength - this.titleInput.value.length;
-        this.titleCounter.textContent = remainingChars;
-
-        if (this.titleInput.value.trim().length === 0) {
-            this.titleInput.classList.add("border-red-500");
-            this.titleError.classList.remove("hidden");
-            this.titleErrorMessage.classList.remove("hidden");
-        } else {
-            this.titleInput.classList.remove("border-red-500");
-            this.titleError.classList.add("hidden");
-            this.titleErrorMessage.classList.add("hidden");
-        }
-    }
-
-    // Description counter and checkmark
-    handleDescriptionUpdate() {
-        const remainingChars = this.description.maxLength - this.description.value.length;
-        this.descriptionCounter.textContent = remainingChars;
-
-        if (this.description.value.trim().length > 0) {
-            this.descriptionCheck.classList.remove("hidden");
-        } else {
-            this.descriptionCheck.classList.add("hidden");
-        }
-    }
-
-    // Private toggle functionality
-    handlePrivateToggle() {
-        if (this.privateToggle.checked) {
-            this.profileDisplayOption.classList.add("opacity-50");
-            this.profileDisplayCheck.classList.remove("bg-blue-600");
-            this.profileDisplayCheck.classList.add("bg-gray-300");
-        } else {
-            this.profileDisplayOption.classList.remove("opacity-50");
-            this.profileDisplayCheck.classList.add("bg-blue-600");
-            this.profileDisplayCheck.classList.remove("bg-gray-300");
-        }
-    }
-
-    // Profile display toggle
-    handleProfileDisplay() {
-        if (!this.privateToggle.checked) {
-            this.profileDisplayCheck.classList.toggle("bg-blue-600");
-            this.profileDisplayCheck.classList.toggle("bg-gray-300");
-        }
-    }
-
-    // Handle form submission
-    handleSubmit(event) {
-        event.preventDefault();
-
-        if (this.titleInput.value.trim().length === 0) {
-            this.handleTitleValidation();
-            return;
-        }
-
-        const formData = {
-            title: this.titleInput.value,
-            description: this.description.value,
-            isPrivate: this.privateToggle.checked,
-            displayOnProfile: this.profileDisplayCheck.classList.contains("bg-blue-600"),
-        };
-
-        console.log("Form submitted with data:", formData);
-        alert("Form submitted successfully: " + JSON.stringify(formData, null, 2));
-    }
 }

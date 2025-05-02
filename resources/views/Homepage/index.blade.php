@@ -35,7 +35,6 @@
                     <p class="text-gray-800 mb-4">
                         {!! $post->content !!}
                     </p>
-x
                     @if($post->multimedia != null)
                         <div class="rounded-md overflow-hidden mb-4 max-h-[400px]">
                             <img src="{{$post->multimedia}}" alt="Front door with No Solicitors sign and bucket" class=" object-cover" />

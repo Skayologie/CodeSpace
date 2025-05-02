@@ -13,7 +13,7 @@ export default class PostForm {
             theme: 'snow',
             placeholder:"Wrire your content ..."
         });
-        document.querySelector('#btnSubmit').addEventListener('submit', (e) =>{
+        document.querySelector('#btnSubmit').addEventListener('click', (e) =>{
             document.getElementById('quill-content').value = quill.root.innerHTML;
         });
         this.init();

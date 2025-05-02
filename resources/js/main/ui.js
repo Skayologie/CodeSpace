@@ -393,17 +393,13 @@ export function CreatePostPage() {
         }
 
         function addFileToPreview(file, fileUrl = null) {
-            // Create a unique ID for this file
             const fileId = `file-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 
-            // Create preview element
             const previewEl = document.createElement('div');
             previewEl.className = 'relative group';
             previewEl.dataset.fileId = fileId;
 
-            // Create preview content based on file type
             if (file.type.startsWith('image/')) {
-                // For images
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     previewEl.innerHTML = `
@@ -420,7 +416,6 @@ export function CreatePostPage() {
                 };
                 reader.readAsDataURL(file);
             } else if (file.type.startsWith('video/')) {
-                // For videos
                 const videoUrl = URL.createObjectURL(file);
                 previewEl.innerHTML = `
                         <div class="aspect-w-16 aspect-h-9 rounded-lg overflow-hidden bg-gray-100">
@@ -442,20 +437,16 @@ export function CreatePostPage() {
                     `;
             }
 
-            // Add to preview container
             previewContainer.appendChild(previewEl);
 
-            // Store file data
             uploadedFiles.push({
                 id: fileId,
                 file: file,
                 url: fileUrl || null
             });
 
-            // Update hidden input
             updateUploadedFilesInput();
 
-            // Add event listener for remove button
             setTimeout(() => {
                 const removeBtn = previewEl.querySelector('.remove-file');
                 if (removeBtn) {
@@ -467,22 +458,17 @@ export function CreatePostPage() {
         }
 
         function removeFile(fileId) {
-            // Remove from DOM
             const fileEl = document.querySelector(`[data-file-id="${fileId}"]`);
             if (fileEl) {
                 fileEl.remove();
             }
 
-            // Remove from array
             uploadedFiles = uploadedFiles.filter(file => file.id !== fileId);
 
-            // Update hidden input
             updateUploadedFilesInput();
         }
 
         function updateUploadedFilesInput() {
-            // In a real implementation, you would store file URLs or IDs
-            // For this example, we'll just store the count
             uploadedFilesInput.value = JSON.stringify(
                 uploadedFiles.map(file => ({
                     id: file.id,
@@ -499,7 +485,6 @@ export function CreatePostPage() {
             uploadError.classList.remove('hidden');
         }
 
-        // Add aspect ratio utility for preview images
         const style = document.createElement('style');
         style.textContent = `
                 .aspect-w-16 {
@@ -518,27 +503,13 @@ export function CreatePostPage() {
             `;
         document.head.appendChild(style);
 
-        // Update form submission to include file validation
-        document.getElementById('btnSubmit').addEventListener('click', function() {
-            // Existing validation code...
-
-            // Check which tab is active
+        document.getElementById('btnSubmit').addEventListener('click', (e)=> {
             const activeTab = document.querySelector('[data-tab].border-orange-500').getAttribute('data-tab');
+                if (activeTab === 'images' && uploadedFiles.length === 0) {
+                    showError('Veuillez télécharger au moins une image ou vidéo.');
+                    return;
+                }
 
-            // If on images tab, validate that files were uploaded
-            if (activeTab === 'images' && uploadedFiles.length === 0) {
-                showError('Veuillez télécharger au moins une image ou vidéo.');
-                return;
-            }
-
-            let data = {
-                "title":document.getElementById("post-title").value,
-                "category":document.getElementById("categories").value,
-                "content":document.getElementById("quill-content").value,
-                "allTags":document.getElementById("allTags").value,
-                "_token":$('meta[name="csrf-token"]').attr('content')
-            };
-            console.log(activeTab)
             $.ajax({
                 url:`/Post?Type=${activeTab}`,
                 method:`POST`,
@@ -550,17 +521,17 @@ export function CreatePostPage() {
                     "_token":$('meta[name="csrf-token"]').attr('content')
                 },
                 success:(response)=>{
-                    console.log(response.responseJSON)
+                    (new Toaster).show(response.message,"success")
+                    setTimeout(() => {
+                        window.location.href = '/';
+                    }, 1000);
                 },
                 error:(error)=>{
                     (new Toaster).show(error.responseJSON.message,"error")
                 }
             });
-
-
-
         });
-    new PostForm();
+        new PostForm();
 }
 
 export function JoinCommunity(){
