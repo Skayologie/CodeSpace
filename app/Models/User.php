@@ -27,4 +27,12 @@ class User extends Model
     public function roles(){
         return $this->belongsToMany(Role::class,"user_has_role");
     }
+
+    public function sentMessages() {
+        return $this->hasMany(Message::class, 'sender_id');
+    }
+
+    public function receivedMessages() {
+        return $this->hasMany(Message::class, 'receiver_id');
+    }
 }
