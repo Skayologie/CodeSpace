@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ExploreController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
@@ -17,6 +18,8 @@ Route::middleware(["auth", "role:user"])->group(function () {
     Route::resource('/Post', PostController::class);
 
     Route::resource('/Chat', ChatController::class);
+    Route::resource('/Message', MessageController::class);
+    Route::post('/Message/{id}', [MessageController::class,"store"]);
 
     Route::resource('/Profile', ProfileController::class);
     Route::resource('/Community', CommunityController::class);
