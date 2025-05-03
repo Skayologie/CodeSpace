@@ -6,6 +6,7 @@ use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\UserController;
@@ -40,6 +41,9 @@ Route::middleware(["auth", "role:user"])->group(function () {
     Route::get("Communities/Search/{nameQuery}",[CommunityController::class,"SearchCommunity"]);
 
     Route::get('/r/${username}/Post/${postId}', [PostController::class,"show"]);
+
+    Route::resource('/Settings', SettingsController::class);
+    Route::get('/Setting/sendChangeEmailVerification', [SettingsController::class,"SendChangeEmail"]);
 
 });
 Route::get('/Explore/Communities/paginate',[ExploreController::class,"paginationThemes"]);

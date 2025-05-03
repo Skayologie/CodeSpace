@@ -3,6 +3,7 @@ import PostForm from "../Events/PostForm";
 import Toaster from "../Events/Toaster";
 import Render from "../Events/RenderPage";
 import Echo from "laravel-echo";
+import {getElement} from "bootstrap/js/src/util";
 
 export function getMyCommunitiesSideBar() {
     $.ajax({
@@ -764,3 +765,4 @@ export function ChangeConversation(){
             view.render("Chat/"+CNV.id,CNV.id,"ChatArea")
     })
 }
+

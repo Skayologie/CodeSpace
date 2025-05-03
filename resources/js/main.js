@@ -6,9 +6,10 @@ import {
     CreatePostPage,
     JoinCommunity,
     InviteModo,
-    sentMessage, ChangeConversation,
+    sentMessage,
+    ChangeConversation
 } from "./main/ui";
-
+import Settings from "./main/Settings"
 function main() {
     try { InviteModo(); } catch (e) { console.error(e); }
     try { JoinCommunity(); } catch (e) { console.error(e); }
@@ -19,6 +20,7 @@ function main() {
     try { CreatePostPage(); } catch (e) { console.error(e); }
     try { ChangeConversation(); } catch (e) { console.error(e); }
     try { sentMessage(); } catch (e) { console.error(e); }
+    try { Settings(); } catch (e) { console.error(e); }
 }
 document.addEventListener('DOMContentLoaded', main);
 
