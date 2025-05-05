@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChatController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\MessageController;
@@ -40,10 +41,17 @@ Route::middleware(["auth", "role:user"])->group(function () {
     Route::get("Users/Search/{nameQuery}",[UserController::class,"SearchUsers"]);
     Route::get("Communities/Search/{nameQuery}",[CommunityController::class,"SearchCommunity"]);
 
-    Route::get('/r/${username}/Post/${postId}', [PostController::class,"show"]);
+    Route::get('/r/{username}/Post/{postId}', [PostController::class,"show"])->name("Post.show");
 
     Route::resource('/Settings', SettingsController::class);
     Route::get('/Setting/sendChangeEmailVerification', [SettingsController::class,"SendChangeEmail"]);
+
+
+    //Comments
+    Route::post('/Comment/Share/{post_id}', [CommentController::class,"store"]);
+    Route::Delete('/Comment/Delete/{comment}', [CommentController::class,"destroy"]);
+
+
 
 });
 Route::get('/Explore/Communities/paginate',[ExploreController::class,"paginationThemes"]);
