@@ -1,8 +1,14 @@
 <x-UserHompage>
     <div class="max-w-3xl w-[900px] mx-auto px-4 py-8">
         <!-- Header -->
-        <h1 class="text-3xl font-bold text-gray-800 mb-6">Paramètres</h1>
-
+        <div class="flex  gap-3">
+            <a href="{{ url()->previous() }}" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3 hover:bg-gray-200 transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </a>
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">Paramètres</h1>
+        </div>
         <!-- General Section -->
         <div class="mb-8">
             <h2 class="text-xl font-semibold text-gray-800 mb-4">Général</h2>

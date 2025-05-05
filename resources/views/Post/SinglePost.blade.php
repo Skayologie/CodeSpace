@@ -17,7 +17,11 @@
                     </div>
                     <div>
                         <div class="flex items-center">
-                            <span class="font-medium text-sm text-gray-900">r/{{$posts->user->username}}</span>
+                            <span class="font-medium text-sm text-gray-900">
+                                <a href="{{route('Profile.show',$posts->user->id)}}">
+                                    r/{{$posts->user->username}}
+                                </a>
+                            </span>
                             <span class="mx-1 text-gray-500 text-xs">•</span>
                             <span class="text-gray-500 text-xs">{{ \Carbon\Carbon::parse($posts->created_at)->diffForHumans() }}</span>
                         </div>
@@ -55,7 +59,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                             </svg>
                         </button>
-                        <span class="mx-2 text-sm font-medium">11k</span>
+                        <span class="mx-2 text-sm font-medium">0</span>
                         <button class="flex items-center justify-center text-gray-500 hover:text-blue-500 transition-colors">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />

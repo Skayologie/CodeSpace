@@ -12,7 +12,11 @@
                         </div>
                         <div>
                             <div class="flex items-center">
-                                <span class="font-medium text-sm text-gray-900">r/{{$post->user->username}}</span>
+                                <span class="font-medium text-sm text-gray-900">
+                                    <a href="{{route('Profile.show',$post->user->id)}}">
+                                        r/{{$post->user->username}}
+                                    </a>
+                                </span>
                                 <span class="mx-1 text-gray-500 text-xs">•</span>
                                 <span class="text-gray-500 text-xs">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
 

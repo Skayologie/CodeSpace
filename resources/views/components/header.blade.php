@@ -167,7 +167,7 @@
                                         </div>
                                     </div>
                                     <div class="ml-3">
-                                        <div class="font-medium text-gray-900">Voir le profil</div>
+                                        <a href="{{route('Profile.show',session("user")->id)}}" class="font-medium text-gray-900">Voir le profil</a>
                                         <div class="text-sm text-gray-500">u/{{$user->username}}</div>
                                     </div>
                                 </div>
@@ -183,42 +183,8 @@
                                     <span>Settings</span>
                                 </a>
 
-                                <!-- Trophies -->
-                                <a href="#" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                                    </svg>
-                                    <div>
-                                        <span>Trophées</span>
-                                        <div class="text-xs text-gray-500">3 réalisations débloquées</div>
-                                    </div>
-                                </a>
 
-                                <!-- Contribution -->
-                                <a href="#" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                                    </svg>
-                                    <div>
-                                        <span>Programme de contribution</span>
-                                        <div class="text-xs text-gray-500">@ 0 pièces d'or gagnées</div>
-                                    </div>
-                                </a>
 
-                                <!-- Dark Mode Toggle -->
-                                <div class="flex items-center justify-between px-4 py-2 text-gray-800 hover:bg-gray-100">
-                                    <div class="flex items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                                        </svg>
-                                        <span>Mode sombre</span>
-                                    </div>
-                                    <div class="relative inline-block w-10 mr-2 align-middle">
-                                        <input type="checkbox" id="toggleDarkMode" class="sr-only peer" />
-                                        <div class="w-10 h-5 bg-gray-200 rounded-full peer-checked:bg-blue-600"></div>
-                                        <div class="absolute w-5 h-5 bg-white rounded-full shadow left-0 peer-checked:left-5 transition"></div>
-                                    </div>
-                                </div>
 
                                 <!-- Log Out -->
                                 <a href="{{route("auth.logout")}}" class="flex items-center px-4 py-2 text-gray-800 hover:bg-gray-100">

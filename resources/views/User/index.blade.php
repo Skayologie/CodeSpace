@@ -23,6 +23,11 @@
                     <!-- Profile Header -->
                     <div class="p-6 flex flex-col md:flex-row items-start md:items-center gap-6">
                         <!-- Avatar with Status -->
+                        <a href="{{ url()->previous() }}" class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center mr-3 hover:bg-gray-200 transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                            </svg>
+                        </a>
                         <div class="relative">
                             <div class="w-28 h-28 rounded-full border-4 border-white shadow-md overflow-hidden bg-gradient-to-br from-amber-400 to-orange-500">
                                 <img src="{{$User->profilePicture}}" alt="Profile Picture" class="w-full h-full object-cover">
@@ -36,33 +41,53 @@
                                 <div>
                                     <h1 class="text-2xl md:text-3xl font-bold text-gray-900 flex items-center gap-2">
                                         {{$User->username}}
-                                        <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                        @if(session("user")->id === $User->id && $User->email_verified_at == Null)
+                                            <span class="gap-1 justify-center inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-400 text-yellow-800">
+                                                <i class="fa-solid fa-circle-exclamation"></i>
+                                                Please verify your email
+                                            </span>
+                                        @elseif(session("user")->id === $User->id && $User->email_verified_at != Null)
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                                             </svg>
-                                            Verified
-                                        </span>
+                                                Verified
+                                            </span>
+                                        @endif
                                     </h1>
-                                    <p class="text-gray-600 flex items-center gap-1.5">
-                                        <span>u/{{$User->username}}</span>
-                                        <span class="inline-block w-1 h-1 rounded-full bg-gray-400"></span>
-                                        <span class="text-gray-500 text-sm">Redditor for {{\Carbon\Carbon::parse($User->email_verified_at)->diffForHumans()}}</span>
-                                    </p>
+                                    @if(session("user")->id != $User->id && $User->email_verified_at == Null)
+                                        <span class=" inline-flex items-center   py-0.5 rounded-full text-xs font-medium  text-yellow-800">
+                                            This account is not verified !
+                                        </span>
+                                    @elseif($User->email_verified_at == Null)
+
+                                    @else
+                                        <p class="text-gray-600 flex items-center gap-1.5">
+                                            <span>u/{{$User->username}}</span>
+                                            <span class="inline-block w-1 h-1 rounded-full bg-gray-400"></span>
+                                            <span class="text-gray-500 text-sm">Redditor for {{\Carbon\Carbon::parse($User->email_verified_at)->diffForHumans()}}</span>
+                                        </p>
+                                    @endif
                                 </div>
 
-                                <div class="flex gap-3">
+                                <div class="flex gap-3 items-center">
 {{--                                    <button class="px-4 py-2 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition-colors flex items-center gap-1.5 shadow-sm">--}}
 {{--                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">--}}
 {{--                                            <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />--}}
 {{--                                        </svg>--}}
 {{--                                        Suivre--}}
 {{--                                    </button>--}}
-                                    <button class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
-                                        </svg>
-                                        Message
-                                    </button>
+
+                                    @if(session()->get("user")->id == $User->id)
+                                        <a href="../../Settings"><i class="fa-solid fa-pen"></i></a>
+                                    @else
+                                        <a href="../../../../Chat/{{$User->id}}" class="px-4 py-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1.5">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd" />
+                                            </svg>
+                                            Message
+                                        </a>
+                                    @endif
                                     <button class="p-2 bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                                             <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
@@ -155,7 +180,7 @@
 
                 <!-- Content - Posts -->
                 <div class="space-y-4">
-                    @foreach($Posts as $post)
+                    @foreach($Posts as $Post)
                         <div class="max-w-3xl mx-auto bg-white">
                             <!-- Header with back button and post info -->
                             <div class="sticky top-0 bg-white z-10 border-gray-200 px-3 py-2 flex items-center">
@@ -167,9 +192,9 @@
                                     </div>
                                     <div>
                                         <div class="flex items-center">
-                                            <span class="font-medium text-sm text-gray-900">r/mildlyinfuriating</span>
+                                            <span class="font-medium text-sm text-gray-900">r/{{$Post->user->username}}</span>
                                             <span class="mx-1 text-gray-500 text-xs">•</span>
-                                            <span class="text-gray-500 text-xs">{{ \Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
+                                            <span class="text-gray-500 text-xs">{{ \Carbon\Carbon::parse($Post->created_at)->diffForHumans() }}</span>
 
                                         </div>
                                         <div class="text-xs text-gray-500">Nightshadepastry</div>
@@ -185,28 +210,27 @@
 
                             <!-- Post content -->
                             <div class="px-3 py-4">
-                                <h1 class="text-xl font-bold text-gray-900 mb-3">{{$post->title}}</h1>
-
-                                <p class="text-gray-800 mb-4">
-                                    {!! $post->content !!}
-                                </p>
-                                x
-                                @if($post->multimedia != null)
+                                <h1 class="text-xl font-bold text-gray-900 mb-3">{{$Post->title}}</h1>
+                                @if($Post->multimedia != null)
                                     <div class="rounded-md overflow-hidden mb-4 max-h-[400px]">
-                                        <img src="{{$post->multimedia}}" alt="Front door with No Solicitors sign and bucket" class=" object-cover" />
+                                        <img src="{{$Post->multimedia}}" alt="Front door with No Solicitors sign and bucket" class=" object-cover" />
                                     </div>
+                                @else
+                                    <p class="text-gray-800 mb-4">
+                                        {!! $Post->content !!}
+                                    </p>
                                 @endif
 
                                 <!-- Post actions -->
                                 <div class="flex items-center space-x-2 pt-2">
                                     <!-- Vote buttons -->
                                     <div class="flex items-center bg-gray-100 rounded-full px-3 py-1.5">
-                                        <button class="flex items-center justify-center text-gray-500 hover:text-orange-500 transition-colors">
+                                        <button id="{{$Post->id}}" class="UpVoteButton flex items-center justify-center text-gray-500 hover:text-orange-500 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
                                             </svg>
                                         </button>
-                                        <span class="mx-2 text-sm font-medium">{{ App\Helpers\HelpersNative::formatNumberShort($post->up_votes) }}</span>
+                                        <span class="mx-2 text-sm font-medium">{{ App\Helpers\HelpersNative::formatNumberShort($Post->up_votes) }}</span>
                                         <button class="flex items-center justify-center text-gray-500 hover:text-blue-500 transition-colors">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -215,27 +239,14 @@
                                     </div>
 
                                     <!-- Comments button -->
-                                    <a href="../r/$%7Busername%7D/Post/$%7BpostId%7D" class="flex items-center bg-gray-100 rounded-full px-3 py-1.5">
+                                    <a href="{{route("Post.show",[$Post->user->username,$Post->id])}}" class="flex items-center bg-gray-100 rounded-full px-3 py-1.5">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                         </svg>
-                                        <span class="text-sm font-medium">11k</span>
+                                        <span class="text-sm font-medium">{{count($Post->comments)}}</span>
                                     </a>
 
-                                    <!-- Award button -->
-                                    <button class="flex items-center justify-center bg-gray-100 rounded-full w-9 h-9 text-gray-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                                        </svg>
-                                    </button>
 
-                                    <!-- Share button -->
-                                    <button class="flex items-center bg-gray-100 rounded-full px-4 py-1.5 text-gray-800">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-                                        </svg>
-                                        <span class="text-sm font-medium">Partager</span>
-                                    </button>
                                 </div>
                             </div>
 
@@ -247,8 +258,6 @@
 
 
                         </div>
-
-
                     @endforeach
                 </div>
             </div>

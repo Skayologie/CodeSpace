@@ -31,6 +31,7 @@ class RegisterController
             $Hashedpassword = $this->RegisterRepository->hashPassword($password);
             $data["password"] = $Hashedpassword;
             $data["token_verification"] = $tokenVerify;
+            $data["profilePicture"] = "https://ui-avatars.com/api/?background=ff4500&color=fff&name=".$data["username"];
             $register = $this->RegisterRepository->create($data);
             if ($register){
                 $this->RegisterRepository->assignRole($register->id,2);
