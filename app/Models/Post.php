@@ -21,4 +21,10 @@ class Post extends Model
         "down_votes",
         "up_votes",
     ];
+    public function user(){
+        return $this->hasOne(User::class,"id","userId");
+    }
+    public function comments(){
+        return $this->hasMany(Comment::class,"post_id","id");
+    }
 }
