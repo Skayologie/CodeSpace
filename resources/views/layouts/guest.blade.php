@@ -18,10 +18,12 @@
     <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
     <script src="https://js.pusher.com/8.4.0/pusher.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/laravel-echo/dist/echo.iife.js"></script>
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 
-<body class="bg-white">
+<body class="bg-white font-[poppins]">
 
 <div id="toast" class="fixed z-[121] right-0 top-[80px] p-[80px]">
 
@@ -35,7 +37,7 @@
         <span class="sr-only">Loading...</span>
     </div>
 </div>
-<div id="CommunityOverlay" class="hidden fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center z-[120]"  >
+<div id="CommunityOverlay" class=" hidden fixed inset-0 bg-black/50 bg-opacity-50 flex items-center justify-center z-[120]"  >
     <!-- Modal Container -->
     <div class=" rounded-lg shadow-xl w-[700px] overflow-hidden bg-white ">
         <!-- Modal Header -->
