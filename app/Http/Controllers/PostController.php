@@ -65,12 +65,12 @@ class PostController extends Controller
     {
         //
         try {
-            $posts = Post::all();
+            $posts = Post::findOrFail($postId);
             return view("Post.SinglePost",[
                 "posts"=>$posts
             ]);
         }catch(\Exception $e){
-
+            return $e->getMessage();
         }
     }
 
