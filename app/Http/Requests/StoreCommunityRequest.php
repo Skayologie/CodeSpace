@@ -24,8 +24,8 @@ class StoreCommunityRequest extends FormRequest
         return [
             'name' => 'required|string|unique:communities|min:3|max:255',
             'description' => 'required|string|max:1000',
-            'banner' => 'nullable|string|max:255',
-            'icon' => 'nullable|string|max:255',
+            'banner' => 'nullable|file',
+            'icon' => 'nullable|file',
             'type' => 'required|string|in:public,private',
             'community_rules' => 'nullable',
         ];
