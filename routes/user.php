@@ -45,6 +45,8 @@ Route::middleware(["auth", "role:user"])->group(function () {
 
     Route::resource('/Settings', SettingsController::class);
     Route::get('/Setting/sendChangeEmailVerification', [SettingsController::class,"SendChangeEmail"]);
+    Route::post('/Setting/changeImageProfile', [SettingsController::class,"ChangeMyAvatar"]);
+    Route::post('/Setting/changeBioProfile', [SettingsController::class,"ChangeMyBio"]);
 
 
     //Comments

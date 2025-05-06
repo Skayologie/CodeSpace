@@ -79,4 +79,49 @@ class SettingsController extends Controller
             return response()->json($e->getMessage());
         }
     }
+
+    public function ChangeMyAvatar(Request $request){
+        try {
+            if ($request->hasFile('selectedFile')) {
+                $myId = session('user')->id;
+                $mydata = User::findOrFail($myId);
+                $file = $request->file('selectedFile');
+                $path = $file->store('avatars', 'public');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('avatars'), $filename);
+                $mydata->profilePicture = "../avatars/".$filename;
+                $mydata->save();
+                session()->get('user')->profilePicture = "../avatars/".$filename;
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Profile image updated.',
+                    'image_url' => asset('public/' . $path)
+                ]);
+            }
+            return response()->json(['message' => 'No file uploaded.']);
+
+
+        }catch(\Exception $e){
+            return response()->json($e->getMessage());
+        }
+    }
+    public function ChangeMyBio(Request $request){
+        try {
+            $data = $request->validate([
+               "newBio"=>"required"
+            ]);
+            $myId = session('user')->id;
+            $mydata = User::findOrFail($myId);
+            $mydata->Bio = $data["newBio"];
+            $mydata->save();
+            session()->get('user')->bio = $data["newBio"];
+            return response()->json([
+                'success' => true,
+                'message' => $data["newBio"],
+            ]);
+
+        }catch(\Exception $e){
+            return response()->json($e->getMessage());
+        }
+    }
 }
