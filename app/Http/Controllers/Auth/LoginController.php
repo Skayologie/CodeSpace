@@ -70,6 +70,10 @@ class LoginController
     }
     public function googleRedirect(){
         $user = Socialite::driver("google")->user();
+        $randomNumber = rand(0, 1400);
+        $url = "https://dummyjson.com/quotes/".$randomNumber;
+        $response = file_get_contents($url);
+        $quoteData = json_decode($response, true);
         $user = User::firstOrCreate([
             "email"=>$user->getEmail()
         ],[
@@ -77,7 +81,7 @@ class LoginController
             "email"=>$user->getEmail(),
             "password"=>Hash::make(Str::password()),
             "profilePicture"=>$user->getAvatar(),
-            "bio"=>"bio",
+            "bio"=>$quoteData['quote'],
         ]);
         session()->put("user",$user);
         session()->put("role","user");
