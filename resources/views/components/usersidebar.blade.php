@@ -17,7 +17,7 @@
 
 
 <!-- Sidebar -->
-<div class="fixed z-[100] pb-[100px] w-64 h-screen bg-white border-r border-gray-200 overflow-y-auto">
+<div class="fixed z-[100]  pb-[100px] w-[350px] h-screen bg-white border-r border-gray-200 overflow-y-auto">
     <!-- Navigation Section -->
     <nav class="px-3 py-2">
         <a href="#" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-md bg-gray-100 text-black">
@@ -56,9 +56,9 @@
                 <i class="fas fa-chevron-up section-icon"></i>
             </div>
             <div class="section-content" id="communities-content">
-                <button id="CommunityButtonCreate" class="flex items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                <button id="CommunityButtonCreate" class="flex w-full justify-start items-center px-3 py-2.5 mt-1 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
                     <i class="fas fa-plus mr-3 w-5 text-center"></i>
-                    <span>Créer une communauté</span>
+                    <span>Create</span>
                 </button>
 
                 <!-- Community Links -->

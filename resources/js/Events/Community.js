@@ -100,27 +100,29 @@ export default class Community {
             let CommunityType = document.querySelector('[name="privacy"]:checked');
             const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            let CommunityData = {
-                name : document.getElementById('communityName').value,
-                description : document.getElementById('description').value,
-                banner      : "hello",
-                icon        : "hello",
-                type                 : CommunityType.value,
-                CommunityThemes      : this.ChoosedThemes,
-                community_rules      : 'rules',
-            };
+            let form = new FormData();
+            form.append("name",document.getElementById('communityName').value);
+            form.append("description",document.getElementById('communityName').value);
+            form.append("banner",this.bannerFileInput.files[0]);
+            form.append("icon",this.iconFileInput.files[0]);
+            form.append("type",CommunityType.value);
+            form.append("CommunityThemes", this.ChoosedThemes);
+            form.append("community_rules",'rules');
+
             $.ajax({
                 url : "/Community",
                 method : "POST",
-                data : JSON.stringify(CommunityData),
+                data : form,
                 headers: {
                     'X-CSRF-TOKEN': token
                 },
-                contentType: 'application/json',
+                processData: false,  // prevent jQuery from converting the FormData into a query string
+                contentType: false,  // prevent jQuery from setting the contentType
                 success : (result)=>{
                     let toast = new Toaster();
                     toast.show(result.message,"success")
                     document.getElementById('ContainForm').innerHTML = "";
+                    console.log(this.iconFileInput.files[0])
                 },
                 error : (error)=>{
                     let toast = new Toaster();

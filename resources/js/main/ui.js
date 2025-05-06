@@ -12,17 +12,16 @@ export function getMyCommunitiesSideBar() {
         success : (result)=>{
             document.getElementById("CommunitiesDispo").innerHTML = result.map(item=>{
                 return `
-                    <a href="../../../../../../Explore/Community/${item.id}" class="flex items-center justify-between px-3 py-2 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
+                    <a href="../../../../../../Explore/Community/${item.id}" class="flex items-center justify-between px-3 py-4 text-sm font-medium rounded-md text-gray-700 hover:bg-gray-100">
                         <div class="flex items-center">
                             <div class="w-5 h-5 rounded-full bg-red-500 flex items-center justify-center mr-3">
-                                <img src="https://www.redditstatic.com/desktop2x/img/favicon/apple-icon-57x57.png" class="w-4 h-4" alt="Canada">
+                                <img src="${item.icon}" class=" w-full h-full rounded-full">
                             </div>
-                            <span>r/${item.name}</span>
+                            <span>${item.name}</span>
                         </div>
-                        <i class="far fa-star favorite-icon"></i>
                     </a>
                     `
-            });
+            }).join(" ");
 
         },
     });
