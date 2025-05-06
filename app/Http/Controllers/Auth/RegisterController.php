@@ -24,7 +24,12 @@ class RegisterController
     }
     public function store(RegisterUserRequest $request){
         $data = $request->validated();
-        $data["bio"] = "Bio";
+        $randomNumber = rand(0, 1400);
+        $url = "https://dummyjson.com/quotes/".$randomNumber;
+        $response = file_get_contents($url);
+        $quoteData = json_decode($response, true);
+        $data["bio"] = $quoteData['quote'];
+
         try {
             $tokenVerify = Str::random(10);
             $password = $data["password"];
