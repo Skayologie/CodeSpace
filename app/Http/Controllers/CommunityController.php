@@ -44,11 +44,33 @@ class CommunityController extends Controller
             $data = $request->validated();
             $CommunityThemes = $request->input()["CommunityThemes"];
             $user_id = Session::get("user")->id;
+            if ($request->hasFile('icon') && $request->file('icon')->isValid() || $request->hasFile('banner') && $request->file('banner')->isValid() ) {
+                $communityIcon = $request->file('icon');
+                $communityBanner = $request->file('banner');
+
+                $Iconfilename = $data["name"].'_'. uniqid() . '.' . $communityIcon->getClientOriginalExtension();
+                $Bannerfilename = $data["name"].'_'. uniqid() . '.' . $communityBanner->getClientOriginalExtension();
+
+                $communityIcon->move(public_path('CommunityIcons'), $Iconfilename);
+                $communityBanner->move(public_path('CommunityBanners'), $Bannerfilename);
+
+                $iconPath   = '../../../../../CommunityIcons/' . $Iconfilename;
+                $bannerPath = '../../../../../CommunityBanners/' . $Bannerfilename;
+
+            } else {
+                // Handle error or default image
+                $iconPath   = 'CommunityIcons/default.png';
+                $bannerPath = 'CommunityBanners/default.png';
+            }
+            $data["icon"] = $iconPath;
+            $data["banner"] = $bannerPath;
+
             $community = Community::insertGetId($data);
             CommunityMembers::create([
                 "communityID"=>$community,
                 "userId"=>$user_id,
                 "role"=>"owner",
+                "status"=>"regularUser",
             ]);
             foreach ($CommunityThemes as $item){
                 CommunityTheme::create([
@@ -225,7 +247,7 @@ class CommunityController extends Controller
     }
     public function listCommunityDispo(){
         try {
-            $userID = \session("user")->id;
+            $userID = session("user")->id;
             $communities = CommunityMembers::join('communities', 'community_members.communityID', '=', 'communities.id')->where("userId",$userID)->where("status","regularUser")->get();
             return response()->json($communities);
         }catch(\Exception $e){
