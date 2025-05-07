@@ -3,11 +3,12 @@
 namespace App\Repository\Eloquent;
 
 use App\Models\Post;
+use App\Repository\Contracts\PostInterface;
 use http\Client\Request;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
 
-class PostRepository
+class PostRepository implements PostInterface
 {
     public function Store_tags(Post $post , $tags){
         try {

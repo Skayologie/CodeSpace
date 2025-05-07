@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
+use App\Repository\Contracts\LoginInterface;
 use App\Repository\Eloquent\LoginRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,7 @@ class LoginController
 {
     protected $LoginRepository;
 
-    public function __construct(LoginRepository $LoginRepository){
+    public function __construct(LoginInterface $LoginRepository){
         $this->LoginRepository = $LoginRepository;
     }
     public function index(){

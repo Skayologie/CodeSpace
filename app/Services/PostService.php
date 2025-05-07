@@ -5,13 +5,14 @@ namespace App\Services;
 
 
 use App\Models\Post;
+use App\Repository\Contracts\PostInterface;
 use App\Repository\Eloquent\PostRepository;
 
 class PostService
 {
-    private PostRepository $postRepository;
-    public function __construct(PostRepository $postRepository){
-        $this->postRepository = $postRepository;
+    protected PostInterface $postRepository;
+    public function __construct(PostInterface $IPostRepository){
+        $this->postRepository = $IPostRepository;
     }
 
     public function Get_tags($data){

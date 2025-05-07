@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repository\Contracts\PostInterface;
+use App\Repository\Eloquent\PostRepository;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
